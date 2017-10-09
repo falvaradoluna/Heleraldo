@@ -15,7 +15,7 @@ var DataAccess = function(config) {
     };
     this.types = {
         INT: sql.Int,
-        DECIMAL: sql.Decimal(18, 2),
+        DECIMAL: sql.Decimal(18, 5),
         STRING: sql.VarChar(8000),
         DATE: sql.DateTime,
         BIT: sql.bit
@@ -41,7 +41,17 @@ DataAccess.prototype.query = function(stored, params, callback) {
                 callback(null, recordsets[0]);
             }).catch(function(err) {
                 callback(err);
+                console.log('Error al realizar la operacion, mensaje: ' + err);
             });
+/*
+        request.execute(stored, function (err, recordsets, returnValue) {
+            if (recordsets != null) {
+                callback(err, recordsets[0]);
+            } else {
+                console.log('Error al realizacion la insercción: ' + params + ' mensaje: ' + err);
+            }
+        });*/
+
     });
 };
 

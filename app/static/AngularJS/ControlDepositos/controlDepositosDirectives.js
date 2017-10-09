@@ -38,6 +38,11 @@ registrationModule.directive('ctrdepBancoFilter', function() {
         restrict: 'E',
         templateUrl: ctrDepPath + 'controlDepositosReferenciaTable.html'
     };
+}).directive('ctrdepReferenciaTableHeraldo', function() {
+    return {
+        restrict: 'E',
+        templateUrl: ctrDepPath + 'controlDepositosReferenciaTableHeraldo.html'
+    };
 });
 
 

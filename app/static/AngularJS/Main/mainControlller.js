@@ -5,9 +5,11 @@ registrationModule.controller('mainController', function($scope, $rootScope, $lo
 
     $scope.init = function() {
          $rootScope.datosUsuario = localStorageService.get('empleadoDatos');
-            $rootScope.mostrarMenu = 1;
+         if ($rootScope.datosUsuario != null)
+         {
+             $rootScope.mostrarMenu = 1;
             if ($rootScope.userData.idPerfil == 4) {
-            	$rootScope.controlDepositosAcceso = 0;
+                $rootScope.controlDepositosAcceso = 0;
                 $rootScope.conciliacionAccesso = 1;          
                 console.log('Administrador Control Depositos')
             } else {
@@ -18,9 +20,10 @@ registrationModule.controller('mainController', function($scope, $rootScope, $lo
                     $rootScope.controlDepositosAcceso = 1;
                     $rootScope.conciliacionAccesso = 0;
                 }
-                
-            }
-            console.log($rootScope.datosUsuario)
+           }
+         }
+           
+            //console.log($rootScope.datosUsuario)
             /*if($rootScope.userData == null){
             	$rootScope.mostrarMenu = 0;
             	alertFactory.warning('Inicie Sesión')

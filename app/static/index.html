@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Portal de Tesorería</title>
+    <title>Control de Depositos Heraldo</title>
     <meta name="description" content="description project">
     <meta name="author" content="name" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,6 +25,7 @@
     <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/themify-icons/themify-icons.min.css">
     <link rel="stylesheet" type="text/css" href="css/tesoreria.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/nv.d3.css">-->
     <!-- <link href="css/datatables.min.css" rel="stylesheet" /> -->
     <link href="plugins/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet">
     <link href="plugins/datatables/extensions/Responsive/css/dataTables.responsive.css" rel="stylesheet">
@@ -39,7 +40,7 @@
                 <!--Brand logo & name-->
                 <!--================================-->
                 <div class="navbar-header">
-                    <a href="index.html" class="navbar-brand">
+                    <a href="#" class="navbar-brand">
                         <img src="img/logo.png" alt="Nifty Logo" class="brand-icon">
                         <div class="brand-title">
                             <span class="brand-text">GA</span>
@@ -56,7 +57,7 @@
                         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                         <li class="tgl-menu-btn">
                             <a class="mainnav-toggle" href="#">
-                                <i class="demo-pli-view-list">&nbsp; Portal Tesorería</i>
+                                <i class="demo-pli-view-list">&nbsp; Control Depositos Heraldo</i>
                             </a>
                         </li>
                     </ul>
@@ -129,7 +130,23 @@
                                     <!--Category name-->
                                     <li class="list-header">Navegación</li>
                                     <!--Menu list item-->
-                                    <li ng-show="controlDepositosAcceso == 1">
+                                    <li>
+                                        <a href="/controlDepositos">
+                                            <i class="glyphicon glyphicon-credit-card"></i>
+                                            <span class="menu-title">
+                                                <strong>Control de Depositos</strong>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/generarReferencias">
+                                            <i class="glyphicon glyphicon-credit-card"></i>
+                                            <span class="menu-title">
+                                                <strong>Generar Referencias</strong>
+                                            </span>
+                                        </a>
+                                    </li>
+                                  <!--  <li ng-show="controlDepositosAcceso == 1">
                                         <a href="/controlDepositos">
                                             <i class="glyphicon glyphicon-credit-card"></i>
                                             <span class="menu-title">
@@ -144,32 +161,32 @@
                                                 <strong>Comisiones</strong>
                                             </span>
                                         </a>
-                                    </li>
-                                    <li ng-show="controlDepositosAcceso == 1">
+                                    </li>-->
+                                 <!--   <li ng-show="controlDepositosAcceso == 1">
                                         <a href="/interes">
                                             <i class="glyphicon glyphicon-euro"></i>
                                             <span class="menu-title">
                                                 <strong>Interés</strong>
                                             </span>
                                         </a>
-                                    </li>
+                                    </li>-->
                                     <!--Menu list item-->
-                                    <li ng-show="controlDepositosAcceso == 3">
+                                   <!-- <li ng-show="controlDepositosAcceso == 3">
                                         <a href="/caja">
                                             <i class="glyphicon glyphicon-briefcase"></i>
                                             <span class="menu-title">
                                                 <strong>Amarre de Caja</strong>
                                             </span>
                                         </a>
-                                    </li>
-                                    <li ng-show="conciliacionAccesso == 1">
+                                    </li>-->
+                                   <!-- <li ng-show="conciliacionAccesso == 1">
                                         <a href="/conciliacionInicio">
                                             <i class="glyphicon glyphicon-sort"></i>
                                             <span class="menu-title">
                                                 <strong>Conciliación Contable</strong>
                                             </span>
                                         </a>
-                                    </li>
+                                    </li>-->
                                 </ul>
                                 <div class="main">
                                     <div></div>
@@ -197,6 +214,7 @@
     <script src="js/tab.js"></script>
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/libs/angular/angular.min.js"></script>
+    
     <script src="js/libs/angular/angular-route.min.js"></script>
     <script src="js/libs/angular/angular-local-storage.min.js"></script>
     <script src="js/angular-filter.js"></script>
@@ -220,6 +238,26 @@
     <script src="plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
     <script src="js/demo/tables-datatables.js"></script>
     <script src="js/libs/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!--charts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-chart/1.0.0-beta.1/ng-google-chart.js" type="text/javascript"></script>
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.4/nv.d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.9/angular-nvd3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.4/nv.d3.css">-->
+    <!--charts-->
+
+    <!--Exporte data to excel, pdf from table ui-grid -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-touch.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.9.12/xlsx.full.min.js"></script>
+    <script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+
+
     <!-- <script src="js/libs/navBar.js"></script>
     <script src="js/libs/jsTree/jstree.min.js"></script>
     <script src="js/libs/dropzone.min.js"></script> -->
@@ -242,6 +280,7 @@
     <script src="AngularJS/Caja/cajaRepository.js"></script>
     <script src="AngularJS/Filtros/filtrosRepository.js"></script>
     <script src="AngularJS/ControlDepositos/controlDepositosController.js"></script>
+    <script src="AngularJS/ControlDepositos/generarReferenciasController.js"></script>
     <script src="AngularJS/ControlDepositos/controlDepositosRepository.js"></script>
     <script src="AngularJS/ControlDepositos/controlDepositosDirectives.js"></script>    
     <script src="AngularJS/comisiones/comisionesController.js"></script>
@@ -253,6 +292,8 @@
 
     <script src="AngularJS/conciliacionDetalleRegistro/conciliacionDetalleRegistroController.js"></script>
     <script src="AngularJS/conciliacionDetalleRegistro/conciliacionDetalleRegistroRepository.js"></script>
+   
+
 </body>
 
 </html>

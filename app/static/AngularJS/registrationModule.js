@@ -6,7 +6,7 @@
 // -- Fecha: 
 // -- =============================================
 
-var registrationModule = angular.module("registrationModule", ["ngRoute", "LocalStorageModule", 'ui.grid', 'ui.grid.selection', 'ui.grid.grouping', 'ui.grid.pinning', 'ui.grid.edit','ui.grid.moveColumns','angular.filter'])
+var registrationModule = angular.module("registrationModule", ["ngRoute", "LocalStorageModule",'ngAnimate', 'ngTouch', 'ui.grid', 'ui.grid.selection', 'ui.grid.grouping', 'ui.grid.pinning', 'ui.grid.edit','ui.grid.moveColumns', 'ui.grid.exporter','angular.filter', /*'nvd3'*/,'googlechart'])
 
     .config(function($routeProvider, $locationProvider) {
 
@@ -42,11 +42,16 @@ var registrationModule = angular.module("registrationModule", ["ngRoute", "Local
             controller: 'interesController'
         });
 
-
         $routeProvider.when('/controlDepositos', {
             templateUrl: 'AngularJS/Templates/controldepositos.html', //FAL 19012017
             controller: 'controlDepositosController'
         });
+
+        $routeProvider.when('/generarReferencias', {
+            templateUrl: 'AngularJS/Templates/generarReferencias.html', //FAL 19012017
+            controller: 'generarReferenciasController'
+        });
+
         $routeProvider.otherwise({ redirectTo: '/' });
 
         $locationProvider.html5Mode({

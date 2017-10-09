@@ -7,24 +7,24 @@
         localStorageService.clearAll('empleadoDatos');
         localStorageService.clearAll('lgnUser');
         localStorage.removeItem('paramBusqueda');
-        if (!($('#lgnUser').val().indexOf('[') > -1)) {
-            localStorageService.set('lgnUser', $('#lgnUser').val());
-console.log($rootScope.currentEmployee)
-            //$scope.getEmpleado();
-            //location.href = '/conciliacionInicio';
-            $scope.permisos($rootScope.currentEmployee);
-            $scope.getEmpleado($rootScope.currentEmployee);
-        } else {
-            if (($('#lgnUser').val().indexOf('[') > -1) && !localStorageService.get('lgnUser')) {
-                if (getParameterByName('employee') != '') {
-                    $rootScope.currentEmployee = getParameterByName('employee');
-                    //location.href = '/conciliacionInicio';
-                } else {
-                    alert('Inicie sesión desde panel de aplicaciones o desde el login.');
-                }
+//         if (!($('#lgnUser').val().indexOf('[') > -1)) {
+//             localStorageService.set('lgnUser', $('#lgnUser').val());
+// console.log($rootScope.currentEmployee)
+//             //$scope.getEmpleado();
+//             //location.href = '/conciliacionInicio';
+//             $scope.permisos($rootScope.currentEmployee);
+//             $scope.getEmpleado($rootScope.currentEmployee);
+//         } else {
+//             if (($('#lgnUser').val().indexOf('[') > -1) && !localStorageService.get('lgnUser')) {
+//                 if (getParameterByName('employee') != '') {
+//                     $rootScope.currentEmployee = getParameterByName('employee');
+//                     //location.href = '/conciliacionInicio';
+//                 } else {
+//                     alert('Inicie sesión desde panel de aplicaciones o desde el login.');
+//                 }
 
-            }
-        }
+//             }
+//         }
         $rootScope.currentEmployee = localStorageService.get('lgnUser');
         $scope.permisos($rootScope.currentEmployee);
         $scope.getEmpleado($rootScope.currentEmployee);
@@ -32,7 +32,9 @@ console.log($rootScope.currentEmployee)
 
     // *************************** Función para logueo de portal *****************
     $scope.permisos = function(usuario) {
-        loginRepository.getPermisos(usuario).then(function(result) {
+        if (usuario !== null)
+        {
+             loginRepository.getPermisos(usuario).then(function(result) {
             console.log(result)
             if (result.data.length > 0) {
                 $scope.login = result.data[0];
@@ -42,17 +44,20 @@ console.log($rootScope.currentEmployee)
                     $rootScope.conciliacionAccesso = 0;
                     alertFactory.warning('Bienvenido a Tesorería: ' + result.data[0].nombreUsuario);
                     location.href = '/conciliacionInicio';
+                    $rootScope.mostrarMenu = 1;
                     localStorageService.set('userData', $scope.login);
                 } else {
                     if ($scope.login.idPerfil == 5) {
                         $rootScope.controlDepositosAcceso = 1;
                         $rootScope.conciliacionAccesso = 1;
+                        $rootScope.mostrarMenu = 1;
                         alertFactory.warning('Bienvenido a Tesorería: ' + result.data[0].nombreUsuario);
                         location.href = '/controlDepositos';
                         localStorageService.set('userData', $scope.login);
                     } else {
                         $rootScope.controlDepositosAcceso = 0;
                         $rootScope.conciliacionAccesso = 1;
+                        $rootScope.mostrarMenu = 1;
                         alertFactory.warning('Bienvenido a Tesorería: ' + result.data[0].nombreUsuario);
                         location.href = '/controlDepositos';
                         localStorageService.set('userData', $scope.login);
@@ -61,10 +66,12 @@ console.log($rootScope.currentEmployee)
                 }
 
             } else {
-                alertFactory.info('Valide el usuario y/o contraseña');
+                //alertFactory.info('Valide el usuario y/o contraseña');
             }
 
         });
+        }
+       
     }
 
     $scope.getEmpleado = function(usuario) {

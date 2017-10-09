@@ -55,7 +55,8 @@ registrationModule.controller('comisionesController', function($scope, $rootScop
         { description: "Buscar", stepIsComplete: false, isActive: true, className: activeTab, iconName: "glyphicon glyphicon-search" },
         { description: "Comisiones", stepIsComplete: false, isActive: false, className: notActiveTab, iconName: "glyphicon glyphicon-eye-open" },
         { description: "Deptos", stepIsComplete: false, isActive: false, className: notActiveTab, iconName: "glyphicon glyphicon-briefcase" },
-        { description: "Detalle", stepIsComplete: false, isActive: false, className: notActiveTab, iconName: "glyphicon glyphicon-list" }
+        { description: "Detalle", stepIsComplete: false, isActive: false, className: notActiveTab, iconName: "glyphicon glyphicon-list" },
+        { description: "Aplicados", stepIsComplete: false, isActive: false, className: notActiveTab, iconName: "glyphicon glyphicon-ok" }
     ];
 
     $scope.$watch('lstTabs[1].isActive', function(active, oldActive) {
@@ -533,5 +534,15 @@ registrationModule.controller('comisionesController', function($scope, $rootScop
     };
 
 
+    $scope.formar_number = function(number, c, d, t){
+        var n = number, 
+            c = isNaN(c = Math.abs(c)) ? 2 : c, 
+            d = d == undefined ? "." : d, 
+            t = t == undefined ? "," : t, 
+            s = n < 0 ? "-" : "", 
+            i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
+            j = (j = i.length) > 3 ? j % 3 : 0;
+        return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+    }
 
 });

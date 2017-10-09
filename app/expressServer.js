@@ -55,7 +55,7 @@ router = require('./website/router');
 
     this.expressServer.post('*', function(req, res){
         var user = { idUsuario: req.body.idUsuario };
-        res.render('index', { user });
+        res.render('index', {});
     });
   };
 
