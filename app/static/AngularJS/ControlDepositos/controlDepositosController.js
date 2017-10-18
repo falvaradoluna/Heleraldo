@@ -716,6 +716,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
 
                     $('#mdlLoading').modal('hide');
                 } else {
+                    swal("No se encontraron resultados");
                     console.log('no trajo nada loadPendingDocs');
                     $('#mdlLoading').modal('hide');
                 }
@@ -808,7 +809,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
         $scope.aplicarCobro = function() {
             $scope.init();
             swal({
-                    title: "¿Esta seguroe?",
+                    title: "¿Esta seguro?",
                     text: "Se aplicarán los anticipos a los elementos seleccionados",
                     type: "info",
                     showCancelButton: true,
