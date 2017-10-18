@@ -9,9 +9,10 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
         // var text3 = eval("(" + text2 + ')');
         // console.log( text3 );
         // console.log( 'mensale', text3.mensaje );
-
+      $scope.init = function(){
         $rootScope.userData = localStorageService.get('userData');
         $scope.idUsuario = $rootScope.userData.idUsuario;
+    }
         $rootScope.mostrarMenu = 1;
         //Listas Onjetos BD
         $scope.lstEmpresaUsuario = [];
@@ -78,6 +79,8 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
         $scope.valorFechaInicioDH = '';
         $scope.valorFechaFinDH = '';
 
+
+
         /*
             filtrosRepository.getEmpresas($scope.idUsuario).then(function(result) {
                 if (result.data.length > 0) {
@@ -89,7 +92,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
 
 
         $scope.getBancos = function() {
-
+                  
             var idEmpresa = $scope.selectedValueEmpresaID;
             $scope.ddlBancoDisabled = false;
 
@@ -179,7 +182,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
                     // });
 
                     $('#mdlLoading').modal('hide');
-                    console.log('Resultados chidos');
+                    console.log('Resultados ');
                 } else {
                     $('#mdlLoading').modal('hide');
                     console.log('No hay Resultados');
@@ -217,7 +220,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
 
 
         $scope.getSucursales = function() {
-
+            $scope.init();
             var idEmpresa = $scope.selectedValueEmpresaID;
 
             filtrosRepository.getSucursales($scope.idUsuario, idEmpresa).then(function(result) {
@@ -680,12 +683,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
                         return parseFloat(b.ImporteTotal) - parseFloat(a.ImporteTotal);
                     }), function(value, key) {
 
-                        /* var deposito ={
-                             "label" : value.Nombre ,
-                             "value" : value.ImporteTotal,
-                             "referencia" : value.Referencia,
-                             "idPersona" : value.Id
-                         }*/
+                      
 
                         var deposito = {
                             c: [
@@ -716,66 +714,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
                     };
 
 
-                    /*$scope.myChartObject.formatters = {
-                        number: [{
-                            columnNum: 1,
-                            prefix: '$'
-                        }]
-                    };*/
-
-                    /*
-                $scope.options = {
-                    chart: {
-                        type: 'pieChart',//'multiBarHorizontalChart',
-                        height: 550,
-                        x: function(d){return d.label;},
-                        y: function(d){return d.value;},
-                        //yErr: function(d){ return [-Math.abs(d.value * Math.random() * 0.3), Math.abs(d.value * Math.random() * 0.3)] },
-                        showControls: true,
-                        showValues: true,
-                        duration: 500,
-                        xAxis: {
-                            showMaxMin: false
-                        },
-                        yAxis: {
-                            axisLabel: 'Importes Totales',
-                            tickFormat: function(d){
-                                return d3.format(',.2f')(d);
-                            }
-                        }, 
-                        margin: {"left": 400, "right": 5},                        
-                        callback: function(chart) {
-                            chart.multibar.dispatch.on('elementClick', function(e){
-                                //console.log('elementClick in callback', e.data); 
-                                $scope.showDetallesDepositoPuntosVentasHeraldo(e.data.referencia, e.data.idPersona, e.data.label);
-
-                            });
-                        }
-                        
-                    },
-                    title: {
-                        enable: true,
-                        text: 'Grafica'
-                    },
-                    subtitle: {
-                        enable: true,
-                        text: 'Depositos realizados por cada punto de venta',
-                        css: {
-                            'text-align': 'center',
-                            'margin': '10px 13px 0px 7px'
-                        }
-                    }
-                };
-        
-                $scope.data = [            
-                    {
-                        "key": "Puntos de venta",
-                        "color": "#1f77b4",
-                        "values": arrayDepositos
-                    }
-                ];*/
-
-
                     $('#mdlLoading').modal('hide');
                 } else {
                     console.log('no trajo nada loadPendingDocs');
@@ -801,7 +739,8 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
 
         $scope.showDetallesDepositoPuntosVentasHeraldo = function(obj, idPersona, nombrePuntoVenta) {
             // console.log( 'test 1', obj.idReferencia );
-            var referencia = obj.referencia;
+            var referencia="";
+            referencia = obj.referencia;
             if (obj.referencia === undefined) {
                 referencia = obj;
             }
@@ -867,8 +806,9 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             };*/
 
         $scope.aplicarCobro = function() {
+            $scope.init();
             swal({
-                    title: "¿Esta seguro?",
+                    title: "¿Esta seguroe?",
                     text: "Se aplicarán los anticipos a los elementos seleccionados",
                     type: "info",
                     showCancelButton: true,
@@ -924,6 +864,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
 
                     //$scope.tblDetallesDepositoPuntosVentas = result.data;
                     $scope.gridDetallesDepositoPuntosVentas.data = result.data;
+                      console.log(result.data);
 
                 } else {
 

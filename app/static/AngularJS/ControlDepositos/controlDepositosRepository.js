@@ -112,14 +112,16 @@ registrationModule.factory('controlDepositosRepository', function($http) {
 
         getReportePdf: function(jsondata) {
             return $http({
-                url: controlDepositosURL + 'reportePdf/',
+                url: 'http://192.168.20.89:5488/api/report',
                 method: "POST",
                 data: {
-                    values: jsondata
+                    template: { name: jsondata.template.name },
+                    data: jsondata.data
                 },
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                responseType: 'arraybuffer'
             });
         },
 

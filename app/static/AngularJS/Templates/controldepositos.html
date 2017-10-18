@@ -1,13 +1,5 @@
-<div style="background-color:white; padding:15px; overflow: hidden;">
+<div style="background-color:white; padding:15px; overflow: hidden;" ng-init="nameTemplate()">
     <ctrdep-Referencia-Table-Heraldo> </ctrdep-Referencia-Table-Heraldo>
-   <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <ctrdep-Banco-Filter> </ctrdep-Banco-Filter>
-    <ctrdep-Banco-Table> </ctrdep-Banco-Table>
-    <ctrdep-Cartera-Filter-User ng-show="tipoDepositoAux == 1"> </ctrdep-Cartera-Filter-User>
-    <ctrdep-Cartera-Filter ng-show="tipoDepositoAux == 1"> </ctrdep-Cartera-Filter>
-    <ctrdep-Cartera-Table ng-show="tipoDepositoAux == 1"> </ctrdep-Cartera-Table>
-    <ctrdep-Referencia-Detail ng-show="tipoDepositoAux == 1"> </ctrdep-Referencia-Detail>
-    <ctrdep-Referencia-Table ng-show="tipoDepositoAux == 1"> </ctrdep-Referencia-Table>-->
 </div>
 <div id="mdlLoading" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg">
@@ -119,9 +111,6 @@
                 <td>
                     <input type="text" style="text-align: right; width: 80px;" ng-model="cartera.importeFinal" ng-value="formar_number(( model.selectedOccurrence == key ) ? cartera.importeDiferencia : cartera.importe, 2, '.','')">
                 </td>
-                <!-- <td style="text-align: right;">
-                $ {{ formar_number(( model.selectedOccurrence == key ) ? cartera.importeFinal : cartera.importe) }}
-                </td> -->
             </tr>
         </table>
         <br>        
@@ -135,7 +124,6 @@
   </div>
 </div>
 
-<!--===================================================-->
 <div id="reproteModalPdf" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -144,9 +132,7 @@
                 <h4 class="modal-title text-center" id="myLargeModalLabel" style="color:#fff;">Conciliación</h4>
             </div>
             <div  id="htmlReporteConciliacion" class="modal-body text-center">
-               
-                <embed ng-src="{{rptResumenConciliacion}}" style="width:800px;height:800px;"></embed>
-                        
+               <embed ng-src="{{rptResumenConciliacion}}" style="width:800px;height:800px;"></embed>
             </div>
             </div>
         </div>

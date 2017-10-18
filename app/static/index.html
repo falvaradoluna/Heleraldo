@@ -9,12 +9,9 @@
     <meta name="author" content="name" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-    <!--Hojas de estilos-->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/toastr.css" rel="stylesheet" />
     <link href="css/spinner/spinner.css" rel="stylesheet">
-    <!--     <link href="/css/datepicker3.css" rel="stylesheet">
-    <script src="js/libs/bootstrap-datepicker.js"></script> -->
     <link href="js/libs/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/nifty.min.css" rel="stylesheet">
@@ -25,14 +22,12 @@
     <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/themify-icons/themify-icons.min.css">
     <link rel="stylesheet" type="text/css" href="css/tesoreria.css">
-    <!--<link rel="stylesheet" type="text/css" href="css/nv.d3.css">-->
-    <!-- <link href="css/datatables.min.css" rel="stylesheet" /> -->
     <link href="plugins/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet">
     <link href="plugins/datatables/extensions/Responsive/css/dataTables.responsive.css" rel="stylesheet">
 </head>
 
 <body ng-app="registrationModule" ng-controller="mainController" ng-init="init()">
-    <div id="container" class="effect aside-float aside-bright mainnav-sm">
+    <div id="container" class="effect aside-float aside-bright mainnav-sm" >
         <!--NAVBAR-->
         <!--===================================================-->
         <header id="navbar" ng-show="mostrarMenu == 1" class="hidePrint">
@@ -52,12 +47,13 @@
                 <!--Navbar Dropdown-->
                 <!--================================-->
                 <div class="navbar-content clearfix">
+
                     <ul class="nav navbar-top-links pull-left">
                         <!--Navigation toogle button-->
                         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                         <li class="tgl-menu-btn">
                             <a class="mainnav-toggle" href="#">
-                                <i class="demo-pli-view-list">&nbsp; Control Depositos Heraldo</i>
+                                <i class="demo-pli-view-list" >&nbsp;{{tituloPagina}}</i>
                             </a>
                         </li>
                     </ul>
@@ -65,10 +61,9 @@
                         <li id="dropdown-user" class="dropdown">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
                                 <span class="pull-right">
-                                    <!--<img class="img-circle img-user media-object" src="img/profile-photos/1.png" alt="Profile Picture">-->
                                     <i class="demo-pli-male ic-user"></i>
                                 </span>
-                                <div class="username hidden-xs"> {{datosUsuario[0].nombre}}</div>
+                                <div class="username hidden-xs">{{datosUsuario[0].nombre}}</div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
                                 <!-- Dropdown footer -->
@@ -115,13 +110,12 @@
                                 <div id="mainnav-profile" class="mainnav-profile">
                                     <div class="profile-wrap">
                                         <div class="pad-btm">
-                                            <!-- <span class="label label-success pull-right"></span> -->
                                             <img class="img-circle img-sm img-border" src="img/profile-photos/1.png" alt="Profile Picture">
                                         </div>
                                         <a href="#profile-nav" class="box-block" data-toggle="collapse" aria-expanded="false">
                                             <span class="pull-right dropdown-toggle">
                                             </span>
-                                            <p class="mnp-name"> {{datosUsuario[0].nombre}}</p>
+                                            <p class="mnp-name">{{datosUsuario[0].nombre}}</p>
                                             <span class="mnp-desc">{{datosUsuario[0].correo}}</span>
                                         </a>
                                     </div>
@@ -131,7 +125,7 @@
                                     <li class="list-header">Navegación</li>
                                     <!--Menu list item-->
                                     <li>
-                                        <a href="/controlDepositos">
+                                        <a href="/Control-Depositos">
                                             <i class="glyphicon glyphicon-credit-card"></i>
                                             <span class="menu-title">
                                                 <strong>Control de Depositos</strong>
@@ -139,54 +133,13 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/generarReferencias">
+                                        <a href="/Generar-Referencias">
                                             <i class="glyphicon glyphicon-credit-card"></i>
                                             <span class="menu-title">
                                                 <strong>Generar Referencias</strong>
                                             </span>
                                         </a>
                                     </li>
-                                  <!--  <li ng-show="controlDepositosAcceso == 1">
-                                        <a href="/controlDepositos">
-                                            <i class="glyphicon glyphicon-credit-card"></i>
-                                            <span class="menu-title">
-                                                <strong>Control de Depositos</strong>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li ng-show="controlDepositosAcceso == 1">
-                                        <a href="/comisiones">
-                                            <i class="glyphicon glyphicon-usd"></i>
-                                            <span class="menu-title">
-                                                <strong>Comisiones</strong>
-                                            </span>
-                                        </a>
-                                    </li>-->
-                                 <!--   <li ng-show="controlDepositosAcceso == 1">
-                                        <a href="/interes">
-                                            <i class="glyphicon glyphicon-euro"></i>
-                                            <span class="menu-title">
-                                                <strong>Interés</strong>
-                                            </span>
-                                        </a>
-                                    </li>-->
-                                    <!--Menu list item-->
-                                   <!-- <li ng-show="controlDepositosAcceso == 3">
-                                        <a href="/caja">
-                                            <i class="glyphicon glyphicon-briefcase"></i>
-                                            <span class="menu-title">
-                                                <strong>Amarre de Caja</strong>
-                                            </span>
-                                        </a>
-                                    </li>-->
-                                   <!-- <li ng-show="conciliacionAccesso == 1">
-                                        <a href="/conciliacionInicio">
-                                            <i class="glyphicon glyphicon-sort"></i>
-                                            <span class="menu-title">
-                                                <strong>Conciliación Contable</strong>
-                                            </span>
-                                        </a>
-                                    </li>-->
                                 </ul>
                                 <div class="main">
                                     <div></div>
@@ -238,16 +191,9 @@
     <script src="plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
     <script src="js/demo/tables-datatables.js"></script>
     <script src="js/libs/sweetalert/dist/sweetalert.min.js"></script>
-
     <!--charts-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-chart/1.0.0-beta.1/ng-google-chart.js" type="text/javascript"></script>
-
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.4/nv.d3.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.9/angular-nvd3.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.4/nv.d3.css">-->
     <!--charts-->
-
     <!--Exporte data to excel, pdf from table ui-grid -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-touch.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>
@@ -256,11 +202,6 @@
     <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.9.12/xlsx.full.min.js"></script>
     <script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
-
-
-    <!-- <script src="js/libs/navBar.js"></script>
-    <script src="js/libs/jsTree/jstree.min.js"></script>
-    <script src="js/libs/dropzone.min.js"></script> -->
     <!--Funciones Comunes-->
     <script src="confront.js"></script>
     <script src="helpers.js"></script>
@@ -272,28 +213,12 @@
     <script src="AngularJS/Main/mainControlller.js"></script>
     <script src="AngularJS/login/loginController.js"></script>
     <script src="AngularJS/login/loginRepository.js"></script>
-    <script src="AngularJS/conciliacionInicio/conciliacionInicioController.js"></script>
-    <script src="AngularJS/conciliacionInicio/conciliacionInicioRepository.js"></script>
-    <script src="AngularJS/Conciliacion/conciliacionController.js"></script>
-    <script src="AngularJS/Conciliacion/conciliacionRepository.js"></script>
-    <script src="AngularJS/Caja/cajaController.js"></script>
-    <script src="AngularJS/Caja/cajaRepository.js"></script>
     <script src="AngularJS/Filtros/filtrosRepository.js"></script>
     <script src="AngularJS/ControlDepositos/controlDepositosController.js"></script>
     <script src="AngularJS/ControlDepositos/generarReferenciasController.js"></script>
     <script src="AngularJS/ControlDepositos/controlDepositosRepository.js"></script>
     <script src="AngularJS/ControlDepositos/controlDepositosDirectives.js"></script>    
-    <script src="AngularJS/comisiones/comisionesController.js"></script>
-    <script src="AngularJS/comisiones/comisionesRepository.js"></script>
-    <script src="AngularJS/comisiones/comisionesDirectives.js"></script>
-    <script src="AngularJS/Interes/interesController.js"></script>
-    <script src="AngularJS/Interes/interesRepository.js"></script>
-    <script src="AngularJS/Interes/interesDirectives.js"></script>
-
-    <script src="AngularJS/conciliacionDetalleRegistro/conciliacionDetalleRegistroController.js"></script>
-    <script src="AngularJS/conciliacionDetalleRegistro/conciliacionDetalleRegistroRepository.js"></script>
-   
-
+    
 </body>
 
 </html>

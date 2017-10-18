@@ -1,10 +1,3 @@
-// -- =============================================
-// -- Author:      Vladimir Juárez
-// -- Create date: 18/03/2016
-// -- Description: toastr alerts
-// -- Modificó: 
-// -- Fecha: 
-// -- =============================================
 registrationModule.factory('alertFactory', function () {
     return {
         success: function (text) {

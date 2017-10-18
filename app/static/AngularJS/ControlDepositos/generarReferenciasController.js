@@ -1,10 +1,11 @@
 registrationModule.controller('generarReferenciasController',
     ['$scope', '$rootScope', '$location', 'localStorageService', 'filtrosRepository', 'alertFactory', '$http', 
-    '$log', '$timeout', 'uiGridConstants', 'controlDepositosRepository', 'exportUiGridService',
+    '$log', '$timeout', 'uiGridConstants', 'controlDepositosRepository', 'exportUiGridService','$sce',
     function($scope, $rootScope, $location, localStorageService, filtrosRepository, alertFactory, $http,
-     $log, $timeout, uiGridConstants, controlDepositosRepository, exportUiGridService) {
+     $log, $timeout, uiGridConstants, controlDepositosRepository, exportUiGridService, $sce) {
 
     	$scope.tblReferenciasPuntosVentas = [];
+    
 
     	$('#tblCtrlPV').DataTable().destroy();
 
@@ -88,6 +89,8 @@ registrationModule.controller('generarReferenciasController',
                     $scope.mostrarBusquedaPuntoVenta();
 
                 } else {
+                    swal ( "Oops" ,  "No se encontraron resultados!" ,  "error" )
+                   // alertFactory.warning('No se encontraron resultados');
                     console.log('no trajo nada getPersonasParametrizadas');
                 }
                
@@ -153,34 +156,64 @@ registrationModule.controller('generarReferenciasController',
     	}*/
 
         $scope.imprimirReferencia = function(idPersona, rfc, nombreRazon, referencia){
+             $('#mdlLoading').modal('show');
+            
+             
+        //Genero la promesa para enviar la estructura del reporte 
+      //  $('#reporteModalPdf').modal('show');
+      new Promise(function(resolve, reject) {
+          var rptReferenciaDepositoHeraldo = 
+                                                { 
+                                                         "Id": idPersona,
+                                                         "Rfc": rfc,  
+                                                         "NombreRazon": nombreRazon, 
+                                                         "Referencia": referencia
+                                                    };
+          var jsonData = {
+                            "template": {
+                                "name": "ReferenciaDepositoHeraldo_rpt"
+                            },
+                            "data": rptReferenciaDepositoHeraldo 
+                        }
+           resolve(jsonData);
+                }).then(function(jsonData) {
+                    controlDepositosRepository.getReportePdf(jsonData).then(function(result){
+                        var file = new Blob([result.data], { type: 'application/pdf' });
+                        var fileURL = URL.createObjectURL(file);
+                        $scope.rptResumenConciliacion = $sce.trustAsResourceUrl(fileURL);
+                         $('#mdlLoading').modal('hide');
+                        $('#reporteModalPdf').modal('show'); 
+                    });
+                });
 
-            $scope.infoReporte = {
 
-                "Id": idPersona,
-                "Rfc": rfc,  
-                "NombreRazon": nombreRazon, 
-                "Referencia": referencia
-            };
+            // $scope.infoReporte = {
 
-             $scope.jsonData = {
-                "template": {
-                    "name": "ReferenciaDepositoHeraldo"
-                },
-                "data": $scope.infoReporte
-            }
+            //     "Id": idPersona,
+            //     "Rfc": rfc,  
+            //     "NombreRazon": nombreRazon, 
+            //     "Referencia": referencia
+            // };
 
-            $('#mdlLoading').modal('show');
-            controlDepositosRepository.getReportePdf($scope.jsonData).then(function(fileName) {
-                setTimeout(function() {
-                    $("#objReportePdf").remove();
-                    $scope.ruta = fileName.data;
-                    //$("<object id='objReportePdf' class='filesInvoce' data='http://192.168.20.9:5000/api/layout/viewpdf?fileName=" + $scope.ruta + "' width='100%' height='500px' >").appendTo('#reportePdf');
-                    //$("<object id='objReportePdf' class='filesInvoce' data='http://192.168.20.9:5200/api/conciliacionDetalleRegistro/viewpdf?fileName=" + $scope.ruta + "' width='100%' height='500px' >").appendTo('#reportePdf');
-                    $('#mdlLoading').modal('hide');
-                    $('#reporteModalPdf').modal('show');
-                }, 5000);
+            //  $scope.jsonData = {
+            //     "template": {
+            //         "name": "ReferenciaDepositoHeraldo"
+            //     },
+            //     "data": $scope.infoReporte
+            // }
+
+            // $('#mdlLoading').modal('show');
+            // controlDepositosRepository.getReportePdf($scope.jsonData).then(function(fileName) {
+            //     setTimeout(function() {
+            //         $("#objReportePdf").remove();
+            //         $scope.ruta = fileName.data;
+            //         //$("<object id='objReportePdf' class='filesInvoce' data='http://192.168.20.9:5000/api/layout/viewpdf?fileName=" + $scope.ruta + "' width='100%' height='500px' >").appendTo('#reportePdf');
+            //         //$("<object id='objReportePdf' class='filesInvoce' data='http://192.168.20.9:5200/api/conciliacionDetalleRegistro/viewpdf?fileName=" + $scope.ruta + "' width='100%' height='500px' >").appendTo('#reportePdf');
+            //         $('#mdlLoading').modal('hide');
+            //         $('#reporteModalPdf').modal('show');
+            //     }, 5000);
     
-            });
+            // });
 
         }
 
@@ -231,9 +264,9 @@ registrationModule.controller('generarReferenciasController',
             function() {
 
 				$scope.generaReferencia($scope.datosGeneracionReferencia);
-                controlDepositosRepository.generaReferenciaPuntoVenta($scope.nuevaReferencia);
+               // controlDepositosRepository.generaReferenciaPuntoVenta($scope.nuevaReferencia);
 
-                swal("Operacion realizada correctamente");
+             
 
                 $('#tblCtrlPV').DataTable().destroy();
                 $scope.tblReferenciasPuntosVentas = [];
@@ -246,6 +279,7 @@ registrationModule.controller('generarReferenciasController',
 		
         		        setTimeout(function() {
         		            $scope.setTablePaging('tblCtrlPV');
+                               swal("Operacion realizada correctamente");
         		        }, 1000);
 		
 		
@@ -275,6 +309,9 @@ registrationModule.controller('generarReferenciasController',
                 IdPersona: datosGeneracionReferencia.IdPersona,
                 ReferenciaDeposito: referenciaDepositoTxt
             }
+             controlDepositosRepository.generaReferenciaPuntoVenta($scope.nuevaReferencia).then(function(result){
+                    console.log(result.data);
+             });
     	}
 
     	function modulo10(str)

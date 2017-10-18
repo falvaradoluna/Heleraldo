@@ -25,7 +25,8 @@ Login.prototype.get_permisos = function(req, res, next) {
 
     var self = this;
 
-    var params = [{ name: 'User', value: req.query.usuario, type: self.model.types.STRING }];
+    var params = [{ name: 'User', value: req.query.usuario, type: self.model.types.STRING }
+    ,{ name: 'pass', value: req.query.contrasena, type: self.model.types.STRING }];
 
     this.model.query('SEL_LOGIN_SP', params, function(error, result) {
         self.view.expositor(res, {

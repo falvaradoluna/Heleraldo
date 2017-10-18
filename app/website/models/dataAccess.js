@@ -43,15 +43,6 @@ DataAccess.prototype.query = function(stored, params, callback) {
                 callback(err);
                 console.log('Error al realizar la operacion, mensaje: ' + err);
             });
-/*
-        request.execute(stored, function (err, recordsets, returnValue) {
-            if (recordsets != null) {
-                callback(err, recordsets[0]);
-            } else {
-                console.log('Error al realizacion la insercción: ' + params + ' mensaje: ' + err);
-            }
-        });*/
-
     });
 };
 
