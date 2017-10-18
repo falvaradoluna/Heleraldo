@@ -23,7 +23,6 @@ router = require('./website/router');
 
     this.expressServer.engine('html', swig.renderFile);
     this.expressServer.set('view engine', 'html');
-    //this.expressServer.set('views', __dirname + '/website/views/templates');
     this.expressServer.set('views', __dirname + '/static/');
     swig.setDefaults({varControls:['[[',']]']});
 
@@ -50,7 +49,6 @@ router = require('./website/router');
     //Servimos el archivo angular
     this.expressServer.get('*', function(req, res){
       res.sendfile('app/static/index.html');
-      //res.render('app/website/views/templates');
     });
 
     this.expressServer.post('*', function(req, res){
