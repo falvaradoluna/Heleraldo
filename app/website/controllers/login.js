@@ -1,7 +1,6 @@
 var LoginView = require('../views/reference'),
     LoginModel = require('../models/dataAccess'),
     moment = require('moment');
-var phantom = require('phantom');
 var path = require('path');
 var webPage = require('webpage');
 var request = require('request');
@@ -9,7 +8,6 @@ var request = require('request');
 
 var Login = function(conf) {
     this.conf = conf || {};
-
     this.view = new LoginView();
     this.model = new LoginModel({
         parameters: this.conf.parameters
