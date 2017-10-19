@@ -822,11 +822,11 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
                         if (value.Rap_Folio == null) { // no tiene aplicacion de cobro
                             var registroAInsertar = {
                                 rap_idempresa: 0, //
-                                rap_idsucursal: 1, //
-                                rap_iddepartamento: 1, //
+                                //rap_idsucursal: 1, //
+                               // rap_iddepartamento: 1, //
                                 rap_idpersona: $scope.selectedValueIdPersona,
-                                rap_cobrador: 'MMK', //
-                                rap_moneda: 'PE',
+                                //rap_cobrador: 'MMK', //
+                                //rap_moneda: 'PE',
                                 rap_tipocambio: 1.00000, //
                                 rap_referencia: $scope.selectedValueIdPersona,
                                 rap_iddocto: '0', //
@@ -845,7 +845,9 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
 
                             }
 
-                            controlDepositosRepository.insertAplicacionCobro(registroAInsertar);
+                            controlDepositosRepository.insertAplicacionCobro(registroAInsertar).then(function(result){
+                                console.log(result); 
+                            });
                         }
 
                     });
