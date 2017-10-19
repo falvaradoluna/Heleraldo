@@ -1,6 +1,5 @@
 var FiltrosView = require('../views/reference'),
-    FiltrosModel = require('../models/dataAccess'),
-    moment = require('moment');
+    FiltrosModel = require('../models/dataAccess');
 var path = require('path');
 var webPage = require('webpage');
 var request = require('request');

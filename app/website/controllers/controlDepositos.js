@@ -1,6 +1,5 @@
 var controlDepositosView = require('../views/reference'),
-    controlDepositosModel = require('../models/dataAccess'),
-    moment = require('moment');
+    controlDepositosModel = require('../models/dataAccess');
 var path = require('path');
 var webPage = require('webpage');
 var request = require('request');

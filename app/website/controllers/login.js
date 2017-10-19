@@ -1,6 +1,5 @@
 var LoginView = require('../views/reference'),
-    LoginModel = require('../models/dataAccess'),
-    moment = require('moment');
+    LoginModel = require('../models/dataAccess');
 var path = require('path');
 var webPage = require('webpage');
 var request = require('request');

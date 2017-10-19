@@ -1,7 +1,6 @@
 var http = require('http'),
 	conf = require('./conf'),
-	expressServer = require('./app/expressServer'),
-	socketIO = require('./app/socketIO');
+	expressServer = require('./app/expressServer');
 
 var Workers = function(config){
 	config = config || {}
@@ -13,7 +12,6 @@ var Workers = function(config){
 
 	this.server = http.createServer(app.expressServer);
 
-	var Io = new socketIO({server:this.server});
 }
 
 Workers.prototype.run = function(){
