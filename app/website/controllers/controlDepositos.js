@@ -165,11 +165,11 @@ controlDepositos.prototype.get_insertAplicacionCobro = function(req, res, next) 
 
     var params = [
         { name: 'rap_idempresa', value: req.query.rap_idempresa, type: self.model.types.INT },
-        { name: 'rap_idsucursal', value: req.query.rap_idsucursal, type: self.model.types.INT },
-        { name: 'rap_iddepartamento', value: req.query.rap_iddepartamento, type: self.model.types.INT },
+       // { name: 'rap_idsucursal', value: req.query.rap_idsucursal, type: self.model.types.INT },
+       // { name: 'rap_iddepartamento', value: req.query.rap_iddepartamento, type: self.model.types.INT },
         { name: 'rap_idpersona', value: req.query.rap_idpersona, type: self.model.types.INT },
-        { name: 'rap_cobrador', value: req.query.rap_cobrador, type: self.model.types.STRING },
-        { name: 'rap_moneda', value: req.query.rap_moneda, type: self.model.types.STRING },
+      //  { name: 'rap_cobrador', value: req.query.rap_cobrador, type: self.model.types.STRING },
+       // { name: 'rap_moneda', value: req.query.rap_moneda, type: self.model.types.STRING },
         { name: 'rap_tipocambio', value: req.query.rap_tipocambio, type: self.model.types.DECIMAL },
         { name: 'rap_referencia', value: req.query.rap_referencia, type: self.model.types.STRING },
         { name: 'rap_iddocto', value: req.query.rap_iddocto, type: self.model.types.STRING },
