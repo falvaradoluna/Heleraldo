@@ -48,17 +48,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
             });
         },
 
-        insertReferenceDetails: function(objData) {
-            return $http({
-                url: controlDepositosURL + 'insertReferenceDetails/',
-                method: "GET",
-                params: objData,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-
         getDepositosPuntosVentasHeraldo: function(fechaInicio, fechaFin) {
             return $http({
                 url: controlDepositosURL + 'depositosPuntosVentasHeraldo/',

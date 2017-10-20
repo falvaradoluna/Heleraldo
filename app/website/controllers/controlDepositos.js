@@ -67,29 +67,6 @@ controlDepositos.prototype.get_createTempReference = function(req, res, next) {
     });
 };
 
-controlDepositos.prototype.get_insertReferenceDetails = function(req, res, next) {
-    var self = this;
-
-    var params = [
-        { name: 'idReferencia', value: req.query.idReferencia, type: self.model.types.INT },
-        { name: 'idSucursal', value: req.query.idSucursal, type: self.model.types.INT },
-        { name: 'idDepartamento', value: req.query.idDepartamento, type: self.model.types.INT },
-        { name: 'idTipoDocumento', value: req.query.idTipoDocumento, type: self.model.types.INT },
-        { name: 'serie', value: req.query.serie, type: self.model.types.STRING },
-        { name: 'folio', value: req.query.folio, type: self.model.types.STRING },
-        { name: 'idCliente', value: req.query.idCliente, type: self.model.types.INT },
-        { name: 'idAlma', value: req.query.idAlma, type: self.model.types.STRING },
-        { name: 'importeDocumento', value: req.query.importeDocumento, type: self.model.types.DECIMAL }
-    ];
-
-    this.model.query('INS_DETALLE_REFERENCIA_LOTE_SP', params, function(error, result) {
-        self.view.expositor(res, {
-            error: error,
-            result: result
-        });
-    });
-};
-
 controlDepositos.prototype.get_testApi = function(req, res, next) {
     //get utiliza params y lo recibe req.query ---> req.query.val1
     //post utiliza data y lo recibe req.body ---> req.body.val1    

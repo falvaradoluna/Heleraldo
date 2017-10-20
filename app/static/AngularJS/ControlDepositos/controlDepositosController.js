@@ -173,42 +173,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             $scope.loadPendingDocs();
         };
 
-
-        $scope.setReferenceParams = function(objCartera, idreferencia, depositoID) {
-
-            var params = {};
-
-            params.idEmpresa = objCartera.idEmpresa;
-            params.idReferencia = idreferencia;
-            params.idSucursal = objCartera.idSucursal;
-            params.idDepartamento = objCartera.idDepartamento;
-            params.idTipoDocumento = 1;
-            params.serie = objCartera.serie;
-            params.folio = objCartera.idDocumento;
-            params.idCliente = objCartera.idCliente;
-            params.idAlma = 0;
-            params.importeDocumento = objCartera.importe;
-            params.idTipoReferencia = 3;
-            params.depositoID = depositoID;
-
-            return params;
-
-        };
-
-        $scope.insertReferenceDetails = function(objData) {
-
-            controlDepositosRepository.insertReferenceDetails(objData).then(function(result) {
-
-                if (result.data.length > 0) {
-                    console.log('ok');
-                } else {
-                    console.log('no trajo nada insertReferenceDetails');
-                }
-            }, function(error) {
-                console.log('Error');
-            });
-        };
-
         $scope.loadDepositosPuntosVentasHeraldo = function(fechaInicio, fechaFin) {
 
             if (fechaInicio == '' || fechaFin == '') {
