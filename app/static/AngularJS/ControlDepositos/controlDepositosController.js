@@ -208,40 +208,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             });
         };
 
-
-        $scope.setSearchType = function(val) {
-            if (val == 1) {
-                $scope.searchType = "ID cliente";
-                $scope.searchTypeID = 1;
-            }
-            if (val == 2) {
-                $scope.searchType = "Nombre Cliente";
-                $scope.searchTypeID = 2;
-            }
-            $scope.lstCliente = [];
-            $scope.searchValue = '';
-            $scope.showUserSearchPanel = false;
-        };
-
-        $scope.searchClients = function() {
-            $scope.showUserSearchPanel = true;
-            if ($scope.searchTypeID == 1) {
-                $scope.getClientByID($scope.searchValue);
-                $scope.searchClienteID = $scope.searchValue;
-            }
-            if ($scope.searchTypeID == 2) {
-                $scope.getClientByName($scope.searchValue);
-            }
-        };
-
-        $scope.SetClienteID = function(cliente) {
-            $scope.lstCliente = [];
-            $scope.searchClienteID = cliente.idCliente;
-            $scope.lstCliente.push(cliente);
-            $scope.searchTypeID = 1;
-            $('#tblClient').DataTable().destroy();
-        };
-
         $scope.getClientByID = function(idBusqueda) {
             $('#tblClient').DataTable().destroy();
             $('#mdlLoading').modal('show');
