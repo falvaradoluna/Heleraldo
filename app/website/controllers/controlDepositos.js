@@ -425,23 +425,6 @@ controlDepositos.prototype.get_delReferenciaGenerada = function(req, res, next) 
     });
 };
 
-controlDepositos.prototype.get_clientByName = function(req, res, next) {
-    var self = this;
-    //asignación de valores mediante parámetros del request
-    var params = [{
-        name: 'varBusqueda',
-        value: req.query.clientName,
-        type: self.model.types.STRING
-    }];
-
-    this.model.query('SEL_CLIENTE_SP', params, function(error, result) {
-        self.view.expositor(res, {
-            error: error,
-            result: result
-        });
-    });
-};
-
 
 controlDepositos.prototype.get_comisiones = function(req, res, next) {
     var self = this;

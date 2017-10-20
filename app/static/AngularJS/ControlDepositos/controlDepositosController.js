@@ -77,22 +77,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
         $scope.valorFechaInicioDH = '';
         $scope.valorFechaFinDH = '';
 
-
-        $scope.getClientByName = function(clientName) {
-            $('#tblClient').DataTable().destroy();
-            $('#mdlLoading').modal('show');
-            controlDepositosRepository.getClientByName(clientName).then(function(result) {
-                if (result.data.length > 0) {
-                    $('#mdlLoading').modal('hide');
-                    $scope.lstCliente = result.data;
-                    $scope.setTableStyle();
-                } else {
-                    $('#mdlLoading').modal('hide');
-                }
-            });
-        };
-
-
         $scope.initCalendarstyle = function() {
             $('#calendar .input-group.date').datepicker({
                 todayBtn: "linked",
@@ -105,9 +89,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             });
         };
 
-
-
-
         $scope.setTableStyle = function() {
             setTimeout(function() {
                 $('#tblClient').DataTable();
@@ -115,8 +96,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
                 $('#tblClient_length').remove();
             }, 500);
         };
-
-
 
         $scope.gridDocumentos.onRegisterApi = function(gridApi) {
 

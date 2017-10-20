@@ -229,20 +229,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
             });
         },
 
-        getClientByName: function(clientName) {
-            return $http({
-                url: controlDepositosURL + 'clientByName/',
-                method: "GET",
-                params: {
-                    clientName: clientName
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-
-            });
-        },
-
         gridDepositosReferenciaHOptions: function() {
             return {
                 enableColumnResize: true,
