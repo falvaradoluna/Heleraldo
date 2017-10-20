@@ -425,31 +425,6 @@ controlDepositos.prototype.get_delReferenciaGenerada = function(req, res, next) 
     });
 };
 
-
-controlDepositos.prototype.get_clientById = function(req, res, next) {
-    //Con req.query se obtienen los parametros de la url
-    //Ejemplo: ?p1=a&p2=b
-    //Retorna {p1:'a',p2:'b'}
-    //Objeto que envía los parámetros
-    //var params = [];
-    //Referencia a la clase para callback
-    var self = this;
-    //asignación de valores mediante parámetros del request
-    var params = [{
-        name: 'idBusqueda',
-        value: req.query.idBusqueda,
-        type: self.model.types.INT
-    }];
-
-    this.model.query('SEL_CLIENTE_ID_SP', params, function(error, result) {
-        self.view.expositor(res, {
-            error: error,
-            result: result
-        });
-    });
-};
-
-
 controlDepositos.prototype.get_clientByName = function(req, res, next) {
     var self = this;
     //asignación de valores mediante parámetros del request

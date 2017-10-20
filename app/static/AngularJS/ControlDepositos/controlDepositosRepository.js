@@ -426,20 +426,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
             ];
         },
 
-        getClientById: function(idBusqueda) {
-            return $http({
-                url: controlDepositosURL + 'clientById/',
-                method: "GET",
-                params: {
-                    idBusqueda: idBusqueda
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
-        },
-
          getReporteReferencia: function(myJson) {
             return $http({
                 url: 'http://189.204.141.193:5488/api/report',

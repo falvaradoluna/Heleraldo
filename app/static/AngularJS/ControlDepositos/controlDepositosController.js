@@ -78,52 +78,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
         $scope.valorFechaFinDH = '';
 
 
-
-
-        $scope.getCuentas = function() {
-
-            var idBanco = $scope.selectedValueBancoID;
-            var idEmpresa = $scope.selectedValueEmpresaID;
-            $scope.ddlCuentaDisabled = false;
-
-            filtrosRepository.getCuenta(idBanco, idEmpresa).then(function(result) {
-                if (result.data.length > 0) {
-                    $scope.lstCuenta = result.data;
-                }
-            });
-        };
-
-        $scope.enableCalendar = function() {
-            $scope.txtFechasDisabled = false;
-            $scope.btnBuscarDisabled = false;
-        };
-
-        $scope.getSucursales = function() {
-            $scope.init();
-            var idEmpresa = $scope.selectedValueEmpresaID;
-
-            filtrosRepository.getSucursales($scope.idUsuario, idEmpresa).then(function(result) {
-                if (result.data.length > 0) {
-                    $scope.lstSucursal = result.data;
-                }
-            });
-        };
-
-        $scope.getClientByID = function(idBusqueda) {
-            $('#tblClient').DataTable().destroy();
-            $('#mdlLoading').modal('show');
-            controlDepositosRepository.getClientById(idBusqueda).then(function(result) {
-                if (result.data.length > 0) {
-                    $('#mdlLoading').modal('hide');
-                    $scope.lstCliente = result.data;
-                } else {
-                    $('#mdlLoading').modal('hide');
-                }
-            });
-        };
-
-
-
         $scope.getClientByName = function(clientName) {
             $('#tblClient').DataTable().destroy();
             $('#mdlLoading').modal('show');

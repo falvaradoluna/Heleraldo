@@ -15,21 +15,7 @@ registrationModule.factory('filtrosRepository', function($http) {
 
             });
         },
-        getSucursales: function(idUsuario, idEmpresa) {
-            return $http({
-                url: filtrosURL + 'sucursales/',
-                method: "GET",
-                params: {
-                    idUsuario: idUsuario,
-                    idEmpresa: idEmpresa
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-
-            });
-        },
-
+        
         getCuentaBanco: function(idCuentaBanco, idempresa) {
             return $http({
                 url: filtrosURL + 'cuentabanco/',
@@ -153,22 +139,5 @@ registrationModule.factory('filtrosRepository', function($http) {
 
             });
         },
-
-        //LQMA 27022017 add obtiene cuenta
-        getCuenta: function(idBanco, idEmpresa) {
-            return $http({
-                url: filtrosURL + 'cuenta/',
-                method: "GET",
-                params: {
-                    idBanco: idBanco,
-                    idEmpresa: idEmpresa
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-
-            });
-        }
-
     }
 });
