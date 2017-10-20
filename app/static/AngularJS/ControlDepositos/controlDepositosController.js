@@ -26,7 +26,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
         $scope.ddlCuentaDisabled = true;
         $scope.txtFechasDisabled = true;
         $scope.btnBuscarDisabled = true;
-        $scope.carteraControlsDisabled = true;
+
         //Depositos Filtros ID 
         $scope.selectedValueEmpresaID = 0;
         $scope.selectedValueBancoID = 0;
@@ -38,7 +38,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
         $scope.selectedValueSucursaID = 0;
         $scope.selectedValueDepartamentoID = null;
         $scope.selectedValueCarteraFechaInicio = null;
-        $scope.selectedValuecarteraFechaFin = null;
         $scope.showUserSearchPanel = false;
         //init grids
         $scope.gridDocumentos = controlDepositosRepository.gridDocumentosOptions();
@@ -210,30 +209,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
         };
 
 
-        $scope.getDepartamentos = function() {
-
-            var idSucursal = $scope.selectedValueSucursaID;
-
-            filtrosRepository.getDepartamentos($scope.idUsuario, idSucursal).then(function(result) {
-                if (result.data.length > 0) {
-                    $scope.lstDepartamento = result.data;
-                }
-            });
-
-        };
-
-/*        $scope.changeSwitch = function() {
-
-
-            if ($scope.btnSwitchIsEnable === 1) {
-                $scope.gridDocumentos.columnDefs =
-                    controlDepositosRepository.gridDocumentosColumns(true);
-            } else {
-                $scope.gridDocumentos.columnDefs =
-                    controlDepositosRepository.gridDocumentosColumns(false);
-            }
-        };*/
-
         $scope.setSearchType = function(val) {
             if (val == 1) {
                 $scope.searchType = "ID cliente";
@@ -386,35 +361,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
         };
 
 
-        $scope.getCarteraVencida = function() {
-            $scope.setPrevSession();
-
-            if ($scope.searchClienteID === 0) {
-                swal("Aviso", "Cliente es requerido.", "warning");
-            } else {
-                var clienteID = $scope.searchClienteID;
-                var empresa = $scope.selectedValueEmpresaID;
-                var sucursaID = $scope.selectedValueSucursaID;
-                var deptoID = $scope.selectedValueDepartamentoID;
-                var fIni = $scope.selectedValueCarteraFechaInicio;
-                var fFin = $scope.selectedValuecarteraFechaFin;
-
-                // console.log( sucursaID );
-                $scope.gridCartera.data = [];
-                $('#mdlLoading').modal('show');
-                filtrosRepository.getCartera(clienteID, empresa, sucursaID, deptoID, fIni, fFin).then(function(result) {
-                    if (result.data.length > 0) {
-
-                        $scope.gridCartera.data = result.data;
-                        $('#mdlLoading').modal('hide');
-                    } else {
-                        $('#mdlLoading').modal('hide');
-                    }
-                });
-            }
-        };
-
-
         $scope.creaReferenciaTemporal = function() {
             //if ($scope.carteraTotal > $scope.depositoTotal) {
             console.log('Filas seleccionadas', $scope.selectedRowCartera.length);
@@ -495,32 +441,11 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
         }
 
 
-        $scope.createReference = function(objData) {
-            $scope.promise = controlDepositosRepository.createReference(objData).then(function(result) {
-                if (result.data.length > 0) {
-
-                    var idRef = result.data[0].idReferencia;
-
-                    for (var i = 0; i < $scope.selectedRowCartera.length; i++) {
-                        var params = $scope.setReferenceParams($scope.selectedRowCartera[i], idRef, $scope.selectedRowDocuments.idDepositoBanco);
-                        $scope.insertReferenceDetails(params);
-                    }
-
-                    $scope.reloadGrids();
-
-                } else {
-                    console.log('createReference empty');
-                }
-            }, function(error) {
-                console.log('Error');
-            });
-        };
 
         $scope.reloadGrids = function() {
             $scope.depositoTotal = 0;
             $scope.carteraTotal = 0;
             $scope.getDepositosBancosNoReferenciados();
-            $scope.getCarteraVencida();
             $scope.loadPendingDocs();
         };
 
@@ -624,7 +549,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
                     controlDepositosRepository.eliminarReferencia(idReferencia.idReferencia).then(function(result) {
                         swal("Aplicado", "Referencia eliminada correctamente", "success");
                         setTimeout(function() {
-                            $scope.getCarteraVencida();
                             $scope.loadPendingDocs();
                             $scope.BuscarDepositos();
                             $('body').removeClass('stop-scrolling');
@@ -955,7 +879,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             controlDepositosRepository.prevSession.selectedValueSucursaID = $scope.selectedValueSucursaID;
             controlDepositosRepository.prevSession.selectedValueDepartamentoID = $scope.selectedValueDepartamentoID;
             controlDepositosRepository.prevSession.selectedValueCarteraFechaInicio = $scope.selectedValueCarteraFechaInicio;
-            controlDepositosRepository.prevSession.selectedValuecarteraFechaFin = $scope.selectedValuecarteraFechaFin;
             controlDepositosRepository.prevSession.showUserSearchPanel = $scope.showUserSearchPanel;
             controlDepositosRepository.prevSession.searchType = $scope.searchType;
             controlDepositosRepository.prevSession.searchTypeID = $scope.searchTypeID;
@@ -980,7 +903,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             $scope.selectedValueSucursaID = controlDepositosRepository.prevSession.selectedValueSucursaID;
             $scope.selectedValueDepartamentoID = controlDepositosRepository.prevSession.selectedValueDepartamentoID;
             $scope.selectedValueCarteraFechaInicio = controlDepositosRepository.prevSession.selectedValueCarteraFechaInicio;
-            $scope.selectedValuecarteraFechaFin = controlDepositosRepository.prevSession.selectedValuecarteraFechaFin;
             $scope.showUserSearchPanel = controlDepositosRepository.prevSession.showUserSearchPanel;
             $scope.searchType = controlDepositosRepository.prevSession.searchType;
             $scope.searchTypeID = controlDepositosRepository.prevSession.searchTypeID;

@@ -17,8 +17,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
             btnSwitchIsEnable: null,
             selectedValueSucursaID: null,
             selectedValueDepartamentoID: null,
-            selectedValueCarteraFechaInicio: null,
-            selectedValuecarteraFechaFin: null,
             showUserSearchPanel: null,
             searchType: null,
             searchTypeID: null,

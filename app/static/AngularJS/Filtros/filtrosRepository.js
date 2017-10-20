@@ -29,20 +29,6 @@ registrationModule.factory('filtrosRepository', function($http) {
 
             });
         },
-        getDepartamentos: function(idUsuario, idSucursal) {
-            return $http({
-                url: filtrosURL + 'departamentos/',
-                method: "GET",
-                params: {
-                    idUsuario: idUsuario,
-                    idSucursal: idSucursal
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-
-            });
-        },
 
         getCuentaBanco: function(idCuentaBanco, idempresa) {
             return $http({
