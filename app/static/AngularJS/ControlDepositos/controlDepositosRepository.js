@@ -59,18 +59,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
             });
         },
 
-
-        insertaRefAntipag: function(bankTableName, currentBase) {
-            return $http({
-                url: controlDepositosURL + 'insertaRefAntipag/',
-                method: "GET",
-                params: { bankTableName: bankTableName, currentBase: currentBase },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-
         getDepositosPuntosVentasHeraldo: function(fechaInicio, fechaFin) {
             return $http({
                 url: controlDepositosURL + 'depositosPuntosVentasHeraldo/',
@@ -184,48 +172,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
             });
         },
 
-        getPendingReference: function() {
-            return $http({
-                url: controlDepositosURL + 'pendingReference/',
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-
-        getPendingReferenceDetails: function(idReferencia) {
-            return $http({
-                url: controlDepositosURL + 'pendingReferenceDetails/',
-                method: "GET",
-                params: { idReferencia: idReferencia },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-
-        eliminarReferencia: function(idReferencia) {
-            return $http({
-                url: controlDepositosURL + 'eliminarReferencia/',
-                method: "GET",
-                params: { idReferencia: idReferencia },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-        
-        insApplyReference: function(idReferencia) {
-            return $http({
-                url: controlDepositosURL + 'applyReference/',
-                method: "GET",
-                params: { idReferencia: idReferencia },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
         updCarteraVencidaReferencia: function(idReferencia) {
             return $http({
                 url: controlDepositosURL + 'updCarteraVencidaReferencia/',

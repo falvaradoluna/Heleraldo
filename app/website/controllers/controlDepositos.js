@@ -363,60 +363,6 @@ controlDepositos.prototype.get_personas = function(req, res, next) {
     });
 };
 
-controlDepositos.prototype.get_pendingReference = function(req, res, next) {
-    var self = this;
-
-    var params = [];
-
-    this.model.query('SEL_CONTROLD_DEPOSITOS_PENDIENTES_SP', params, function(error, result) {
-        self.view.expositor(res, {
-            error: error,
-            result: result
-        });
-    });
-};
-
-
-controlDepositos.prototype.get_pendingReferenceDetails = function(req, res, next) {
-    var self = this;
-
-    var params = [{ name: 'idReferencia', value: req.query.idReferencia, type: self.model.types.INT }];
-
-    this.model.query('SEL_CONTROLD_DEPOSITOS_PENDIENTES_DETALLE_SP', params, function(error, result) {
-        self.view.expositor(res, {
-            error: error,
-            result: result
-        });
-    });
-};
-
-
-controlDepositos.prototype.get_applyReference = function(req, res, next) {
-    var self = this;
-
-    var params = [{ name: 'idReferencia', value: req.query.idReferencia, type: self.model.types.INT }];
-
-    this.model.query('INS_APLICA_REFERENCIAS_SP', params, function(error, result) {
-        self.view.expositor(res, {
-            error: error,
-            result: result
-        });
-    });
-};
-
-controlDepositos.prototype.get_eliminarReferencia = function(req, res, next) {
-    var self = this;
-
-    var params = [{ name: 'idReferencia', value: req.query.idReferencia, type: self.model.types.INT }];
-
-    this.model.query('DEL_REFERENCIA_TEMPORAL_SP', params, function(error, result) {
-        self.view.expositor(res, {
-            error: error,
-            result: result
-        });
-    });
-};
-
 
 controlDepositos.prototype.get_setObservation = function(req, res, next) {
     var self = this;
@@ -671,22 +617,6 @@ controlDepositos.prototype.get_insInteresComisionDetalle = function(req, res, ne
 
     this.model.query('INS_CXPCOMISIONESINTERESESDET_SP', params, function(error, result) {
 
-        self.view.expositor(res, {
-            error: error,
-            result: result
-        });
-    });
-};
-
-controlDepositos.prototype.get_insertaRefAntipag = function(req, res, next) {
-    var self = this;
-
-    var params = [
-        { name: 'bankTableName', value: req.query.bankTableName, type: self.model.types.STRING },
-        { name: 'currentBase', value: req.query.currentBase, type: self.model.types.STRING }
-    ];
-
-    this.model.query('INS_REFANTIPAG', params, function(error, result) {
         self.view.expositor(res, {
             error: error,
             result: result
