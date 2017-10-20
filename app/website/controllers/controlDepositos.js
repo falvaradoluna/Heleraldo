@@ -178,22 +178,6 @@ controlDepositos.prototype.get_insertAplicacionCobro = function(req, res, next) 
     
 };
 
-controlDepositos.prototype.get_insertPuntoVenta = function(req, res, next) {
-    var self = this;
-
-    var params = [
-        { name: 'Id', value: req.query.Id, type: self.model.types.INT },
-        { name: 'Rfc', value: req.query.Rfc, type: self.model.types.STRING },
-        { name: 'NombreRazon', value: req.query.NombreRazon, type: self.model.types.STRING }
-    ];
-
-    this.model.query('Ins_Punto_Venta_SP', params, function(error, result) {
-        self.view.expositor(res, {
-            error: error,
-            result: result
-        });
-    });    
-};
 
 controlDepositos.prototype.get_personasParametrizadas = function(req, res, next) {
     var self = this;

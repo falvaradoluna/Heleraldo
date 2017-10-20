@@ -128,39 +128,6 @@
     </div>
 </div>
 
-<div class="modal fade" id="mdlAgregarPuntoVenta" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content" style="height: 362px;">
-            <div class="modal-header label-mint">
-                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle text-white"></i></button>
-                <h4 class="modal-title text-white">Nuevo</h4>
-            </div>
-            <div class="modal-body">
-                <div class="panel" style="padding: 5px;">
-                    <div class="form-group">
-                        <label for="idPersona">Id Persona</label>
-                        <input ng-model="puntoVenta.Id" class="form-control" id="idPersona">
-                        <i class=""></i>
-                    </div>
-                    <div class="form-group">
-                        <label for="rfc">RFC</label>
-                        <input ng-model="puntoVenta.Rfc" class="form-control" id="rfc">
-                        <i class=""></i>
-                    </div>
-                    <div class="form-group">
-                        <label for="nomRazon">Nombre o Razón Social</label>
-                        <input ng-model="puntoVenta.NombreRazon" class="form-control" id="nomRazon">
-                        <i class=""></i>
-                    </div>
-                    <br>
-                </div> 
-
-                <button style="float: right;" ng-if="puntoVenta.Id != '' && puntoVenta.Rfc != '' && puntoVenta.NombreRazon != '' " class="btn btn-primary" ng-click="crearNuevoPuntoVenta()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear</button>                        
-            </div>             
-        </div>
-    </div>
-</div>
-
 <div id="reporteModalPdf" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

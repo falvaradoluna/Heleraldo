@@ -126,18 +126,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
             });
         },
 
-        insertarPuntoVenta: function(objData) {
-            //console.log('insertado objeto:' + objData);
-            return $http({
-                url: controlDepositosURL + 'insertPuntoVenta/',
-                method: "GET",
-                params: objData,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-
         getPersonasParametrizadas: function(objData) {
             
             return $http({

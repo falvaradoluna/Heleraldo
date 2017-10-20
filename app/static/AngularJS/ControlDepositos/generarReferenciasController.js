@@ -111,50 +111,6 @@ registrationModule.controller('generarReferenciasController',
 			$('#mdlAgregarPuntoVenta').modal('show');
     	}
 
-    /*	$scope.crearNuevoPuntoVenta = function(puntoVenta){
-
-    		swal({
-                title: "¿Esta seguro?",
-                text: "Se creara el nuevo punto de venta especificado",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#21B9BB",
-                confirmButtonText: "Aceptar",
-                closeOnConfirm: true
-            },
-            function() {
-                //$('#mdlLoading').modal('show');
-                
-                $scope.puntoVenta.Id = parseInt($scope.puntoVenta.Id);
-                controlDepositosRepository.insertarPuntoVenta($scope.puntoVenta);
-
-                swal("Operacion realizada correctamente");
-
-                $('#tblCtrlPV').DataTable().destroy();
-                $scope.tblReferenciasPuntosVentas = [];
-		
-    			controlDepositosRepository.getPersonas().then(function(result) {
-        		    if (result.data.length > 0) {
-        		        $scope.tblReferenciasPuntosVentas = result.data;
-        		       $('#mdlAgregarPuntoVenta').modal('hide');
-        		       swal("Operacion realizada correctamente");
-		
-        		        setTimeout(function() {
-        		            $scope.setTablePaging('tblCtrlPV');
-        		        }, 1000);
-		
-		
-        		    } else {
-        		        console.log('no trajo nada getPersonas');
-        		    }
-        		}, function(error) {
-        		    console.log('Error');
-        		});
-                
-            });
-
-    	}*/
-
         $scope.imprimirReferencia = function(idPersona, rfc, nombreRazon, referencia){
              $('#mdlLoading').modal('show');
             
