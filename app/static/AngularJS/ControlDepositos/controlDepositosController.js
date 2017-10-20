@@ -89,14 +89,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             });
         };
 
-        $scope.setTableStyle = function() {
-            setTimeout(function() {
-                $('#tblClient').DataTable();
-                $('#tblClient_filter').remove();
-                $('#tblClient_length').remove();
-            }, 500);
-        };
-
         $scope.gridDocumentos.onRegisterApi = function(gridApi) {
 
             gridApi.selection.on.rowSelectionChanged($scope, function(row) {
