@@ -2,10 +2,11 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
     '$log', '$timeout', 'uiGridConstants', 'controlDepositosRepository', 'exportUiGridService',
     function($scope, $rootScope, $location, localStorageService, filtrosRepository, alertFactory, $http,
         $log, $timeout, uiGridConstants, controlDepositosRepository, exportUiGridService, $sce) {
-      $scope.init = function(){
-        $rootScope.userData = localStorageService.get('userData');
-        $scope.idUsuario = $rootScope.userData.idUsuario;
-    }
+        
+        $scope.init = function(){
+            $rootScope.userData = localStorageService.get('userData');
+            $scope.idUsuario = $rootScope.userData.idUsuario;
+        }
         $rootScope.mostrarMenu = 1;
      
         //init grids
@@ -329,71 +330,8 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             }, function(error) {
                 console.log('Error');
             });
-
-
         };
 
-        function guid() {
-            function s4() {
-                return Math.floor((1 + Math.random()) * 0x10000)
-                    .toString(16)
-                    .substring(1);
-            }
-            return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
-        }
-
-
-        /*$scope.setPrevSession = function() {
-            controlDepositosRepository.prevSession.isFirstTime = false;
-            controlDepositosRepository.prevSession.ddlBancoDisabled = $scope.ddlBancoDisabled;
-            controlDepositosRepository.prevSession.ddlCuentaDisabled = $scope.ddlCuentaDisabled;
-            controlDepositosRepository.prevSession.txtFechasDisabled = $scope.txtFechasDisabled;
-            controlDepositosRepository.prevSession.btnBuscarDisabled = $scope.btnBuscarDisabled;
-            controlDepositosRepository.prevSession.carteraControlsDisabled = $scope.carteraControlsDisabled;
-            controlDepositosRepository.prevSession.selectedValueEmpresaID = $scope.selectedValueEmpresaID;
-            controlDepositosRepository.prevSession.selectedValueBancoID = $scope.selectedValueBancoID;
-            controlDepositosRepository.prevSession.selectedValueCuentaID = $scope.selectedValueCuentaID;
-            controlDepositosRepository.prevSession.selectedValueFechaInicio = $scope.selectedValueFechaInicio;
-            controlDepositosRepository.prevSession.selectedValueFechaFin = $scope.selectedValueFechaFin;
-            controlDepositosRepository.prevSession.btnSwitchIsEnable = $scope.btnSwitchIsEnable;
-            controlDepositosRepository.prevSession.selectedValueSucursaID = $scope.selectedValueSucursaID;
-            controlDepositosRepository.prevSession.selectedValueDepartamentoID = $scope.selectedValueDepartamentoID;
-            controlDepositosRepository.prevSession.selectedValueCarteraFechaInicio = $scope.selectedValueCarteraFechaInicio;
-            controlDepositosRepository.prevSession.showUserSearchPanel = $scope.showUserSearchPanel;
-            controlDepositosRepository.prevSession.searchType = $scope.searchType;
-            controlDepositosRepository.prevSession.searchTypeID = $scope.searchTypeID;
-            controlDepositosRepository.prevSession.searchValue = $scope.searchValue;
-            controlDepositosRepository.prevSession.searchClienteID = $scope.searchClienteID;
-        };
-
-
-        if (controlDepositosRepository.prevSession.isFirstTime === false) {
-
-            $scope.ddlBancoDisabled = controlDepositosRepository.prevSession.ddlBancoDisabled;
-            $scope.ddlCuentaDisabled = controlDepositosRepository.prevSession.ddlCuentaDisabled;
-            $scope.txtFechasDisabled = controlDepositosRepository.prevSession.txtFechasDisabled;
-            $scope.btnBuscarDisabled = controlDepositosRepository.prevSession.btnBuscarDisabled;
-            $scope.carteraControlsDisabled = controlDepositosRepository.prevSession.carteraControlsDisabled;
-            $scope.selectedValueEmpresaID = controlDepositosRepository.prevSession.selectedValueEmpresaID;
-            $scope.selectedValueBancoID = controlDepositosRepository.prevSession.selectedValueBancoID;
-            $scope.selectedValueCuentaID = controlDepositosRepository.prevSession.selectedValueCuentaID;
-            $scope.selectedValueFechaInicio = controlDepositosRepository.prevSession.selectedValueFechaInicio;
-            $scope.selectedValueFechaFin = controlDepositosRepository.prevSession.selectedValueFechaFin;
-            $scope.btnSwitchIsEnable = controlDepositosRepository.prevSession.btnSwitchIsEnable;
-            $scope.selectedValueSucursaID = controlDepositosRepository.prevSession.selectedValueSucursaID;
-            $scope.selectedValueDepartamentoID = controlDepositosRepository.prevSession.selectedValueDepartamentoID;
-            $scope.selectedValueCarteraFechaInicio = controlDepositosRepository.prevSession.selectedValueCarteraFechaInicio;
-            $scope.showUserSearchPanel = controlDepositosRepository.prevSession.showUserSearchPanel;
-            $scope.searchType = controlDepositosRepository.prevSession.searchType;
-            $scope.searchTypeID = controlDepositosRepository.prevSession.searchTypeID;
-            $scope.searchValue = controlDepositosRepository.prevSession.searchValue;
-            $scope.searchClienteID = controlDepositosRepository.prevSession.searchClienteID;
-
-            $scope.getBancos();
-            $scope.getCuentas();
-            $scope.getSucursales();
-            $scope.getDepartamentos();
-        }*/
 
         $scope.BuscarDepositosHeraldo = function() {
 
@@ -422,81 +360,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
                 }]
             });
         };
-
-        $scope.porAplicar = function() {
-            $(".pestania").removeClass('active');
-            $(".por-aplicar").addClass('active');
-            $scope.tipoDeposito = 1;
-            $scope.tipoDepositoAux = 1;
-            $scope.gridDocumentos.multiSelect = false;
-            $scope.gridDocumentos.columnDefs = controlDepositosRepository.gridDocumentosColumns(true);
-            // $scope.selectedRowDocuments = {};
-            if (!$scope.carteraControlsDisabled)
-                $scope.getDepositosBancosNoReferenciados();
-        }
-
-        $scope.dpi = function() {
-            $(".pestania").removeClass('active');
-            $(".dpi").addClass('active');
-            $scope.tipoDeposito = 2;
-            $scope.tipoDepositoAux = 2;
-            $scope.gridDocumentos.multiSelect = true;
-            $scope.gridDocumentos.columnDefs = controlDepositosRepository.gridDocumentosColumns(true);
-            // $scope.selectedRowDocuments = [];
-            if (!$scope.carteraControlsDisabled)
-                $scope.getDepositosPorIdentificar();
-        }
-
-        $scope.aplicado = function() {
-            $(".pestania").removeClass('active');
-            $(".aplicado").addClass('active');
-            $scope.tipoDeposito = 3;
-            $scope.tipoDepositoAux = 3;
-            $scope.gridDocumentos.columnDefs = controlDepositosRepository.gridDocumentosColumnsAplicados(true);
-            $scope.gridDocumentos.multiSelect = false;
-            // $scope.selectedRowDocuments = {};
-            if (!$scope.carteraControlsDisabled)
-                $scope.getDepositosAplicados();
-        }
-
-    $scope.generaInfoReport = function() {
-
-    $('#mdlLoading').modal('show');
-
-    setTimeout(function() {
-         
-         $('#mdlLoading').modal('hide');
-         $('reproteModalPdf').modal('show');
-            new Promise(function(resolve, reject) {
-                var rptDetalleConciliacionBancaria = {
-                    "titulo": "CONCILIACIÓN BANCARIA",
-                    "titulo2": "BANCOS",
-                    "titulo3": "FA04",
-                    "empresa": $scope.busqueda.Empresa,
-                    "fechaElaboracion": $scope.fechaReporte,
-                    "conciliacionBancaria": $scope.busqueda.Banco  };
-                var jsonData = {
-                    "template": {
-                        "name": "heleraldoReferencia_rpt"
-                    },
-                    "data": rptDetalleConciliacionBancaria
-                }
-                resolve(jsonData);
-            }).then(function(jsonData) {
-                controlDepositosRepository.getReporteReferencia(jsonData).then(function(result) {
-                    var file = new Blob([result.data], { type: 'application/pdf' });
-                    var fileURL = URL.createObjectURL(file);
-                    $scope.rptResumenConciliacion = $sce.trustAsResourceUrl(fileURL);
-                    $('#mdlLoading').modal('hide');
-                    $('#reproteModalPdf').modal('show');
-                });
-            });
-        
-    }, 4000)
-}
-
-
-
     }
 ]);
 

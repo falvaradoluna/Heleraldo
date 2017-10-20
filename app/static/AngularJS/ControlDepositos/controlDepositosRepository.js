@@ -2,28 +2,6 @@ var controlDepositosURL = global_settings.urlCORS + 'api/controlDepositos/';
 
 registrationModule.factory('controlDepositosRepository', function($http) {
     return {
-        prevSession: {
-            isFirstTime: true,
-            ddlBancoDisabled: null,
-            ddlCuentaDisabled: null,
-            txtFechasDisabled: null,
-            btnBuscarDisabled: null,
-            carteraControlsDisabled: null,
-            selectedValueEmpresaID: null,
-            selectedValueBancoID: null,
-            selectedValueCuentaID: null,
-            selectedValueFechaInicio: null,
-            selectedValueFechaFin: null,
-            btnSwitchIsEnable: null,
-            selectedValueSucursaID: null,
-            selectedValueDepartamentoID: null,
-            showUserSearchPanel: null,
-            searchType: null,
-            searchTypeID: null,
-            searchValue: null,
-            searchClienteID: null
-        },
-
 
         createReference: function(objData) {
             console.log( objData );
@@ -326,36 +304,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
                     displayName: 'Observaciones',
                     cellEditableCondition: true,
                     cellClass: 'gridCellRight',
-                    width: '*'
-                }
-            ];
-        },
-
-        gridDocumentosColumnsAplicados: function(isVisible) {
-            return [
-                { name: 'idBmer', displayName: 'Cons', cellClass: 'gridCellRight', width: 75 },
-                { name: 'banco', displayName: 'Banco', cellClass: 'gridCellLeft', width: 100 },
-                { name: 'referencia', displayName: 'Referencia', cellClass: 'gridCellLeft', width: 200 },
-                { name: 'concepto', displayName: 'Concepto', cellClass: 'gridCellLeft', width: 250 },
-                { name: 'refAmpliada', displayName: 'Referencia Ampliada', cellClass: 'gridCellLeft', width: 200 },
-                { name: 'fechaOperacion', displayName: 'Fecha', type: 'date', cellFilter: 'date:\'dd-MM-yyyy\'', cellClass: 'gridCellRight', width: 100 },
-                { name: 'cargo', displayName: 'Cargo', cellFilter: 'currency', visible: false, cellClass: 'gridCellRight', width: 100 },
-                { name: 'abono', displayName: 'Abono', cellFilter: 'currency', cellClass: 'gridCellRight', width: 100 }, {
-                    name: 'observaciones',
-                    displayName: 'Observaciones',
-                    cellEditableCondition: true,
-                    visible: false,
-                    cellClass: 'gridCellRight',
-                    width: '*'
-                },
-                {
-                    name: 'verdetalle',
-                    displayName: 'Ver detalle',
-                    cellEditableCondition: true,
-                    visible: true,
-                    enableCellEdit : false,
-                    cellClass: 'gridCellRight',
-                    cellTemplate :'<button class="btn btn-info btn-xs" ng-click="grid.appScope.showReferenceDetails(row.entity.idReferencia)"><i class="ti-eye"></i></button>',
                     width: '*'
                 }
             ];
