@@ -67,25 +67,6 @@ controlDepositos.prototype.get_createTempReference = function(req, res, next) {
     });
 };
 
-controlDepositos.prototype.get_quitarDPI = function(req, res, next) {
-    var self = this;
-
-    var params = [
-        { name: 'idCargoBanco', value: req.query.idCargoBanco, type: self.model.types.INT },
-        { name: 'idBanco', value: req.query.idBanco, type: self.model.types.INT },
-        { name: 'idUsuario', value: req.query.idUsuario, type: self.model.types.INT }
-
-    ];
-
-    this.model.query('INS_QUITAR_DPI_SP', params, function(error, result) {
-        self.view.expositor(res, {
-            error: error,
-            result: result
-        });
-    });
-};
-
-
 controlDepositos.prototype.get_insertReferenceDetails = function(req, res, next) {
     var self = this;
 

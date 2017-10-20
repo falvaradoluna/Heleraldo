@@ -1072,23 +1072,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
         }
 
-        $scope.quitarDPI = function() {
-            // console.log( $scope.selectedRowCartera );
-            // console.log( $scope.selectedRowDocuments );
-            // console.log( $scope.selectedRowDPI );
-            $scope.selectedRowDPI.forEach(function(item, key) {
-                controlDepositosRepository.quitarDPI(item.idBmer, item.idBanco, $scope.idUsuario)
-                // console.log( 'idCargoBanco' + item.idBmer );
-                // console.log( 'idBanco' + item.idBanco );
-                // console.log( 'idUsuario' + $scope.idUsuario );
-
-                if (key == ($scope.selectedRowDPI.length - 1)) {
-                    $scope.BuscarDepositos();
-                }
-            });
-
-            // console.log('controlDepositosRepository.quitarDPI( idCargoBanco, idBanco, idUsuario )');
-        }
 
     $scope.generaInfoReport = function() {
 

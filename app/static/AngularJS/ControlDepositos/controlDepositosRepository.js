@@ -61,21 +61,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
             });
         },
 
-        quitarDPI: function( idCargoBanco, idBanco, idUsuario ) {
-            return $http({
-                url: controlDepositosURL + 'quitarDPI/',
-                method: "GET",
-                params: {
-                    idCargoBanco: idCargoBanco,
-                    idBanco: idBanco,
-                    idUsuario: idUsuario
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-
 
         insertaRefAntipag: function(bankTableName, currentBase) {
             return $http({
