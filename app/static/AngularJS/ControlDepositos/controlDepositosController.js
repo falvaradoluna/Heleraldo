@@ -67,7 +67,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
 
         $scope.selectedRowDocuments = {};
         $scope.selectedRowDPI = [];
-        $scope.selectedRowCartera = [];
 
         // $scope.selectedRowsDetallesReferencia = [];
 
@@ -326,57 +325,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             return arr;
         };
 
-
-        $scope.creaReferenciaTemporal = function() {
-            //if ($scope.carteraTotal > $scope.depositoTotal) {
-            console.log('Filas seleccionadas', $scope.selectedRowCartera.length);
-            console.log('Cartera Total', $scope.carteraTotal);
-            console.log('Deposito Total', $scope.depositoTotal);
-            // if ($scope.carteraTotal > $scope.depositoTotal && $scope.selectedRowCartera.length > 1) {
-
-            if ($scope.depositoTotal === 0 || $scope.carteraTotal === 0) {
-                swal("Aviso", "Seleccione almenos un deposito  y un documento.", "warning");
-            } else if ($scope.carteraTotal > $scope.depositoTotal) {
-                swal("Aviso", "El pago es menor a la suma de la cartera.", "warning");
-            } else {
-                $("#modal-anticipo").modal('show');
-                $scope.anticipo = $scope.depositoTotal - $scope.carteraTotal;
-                $scope.Seleccionado = '';
-                $scope.selectedRowCartera.forEach(function(item, key) {
-                    $scope.selectedRowCartera[key].checked = false;
-                    // $scope.selectedRowCartera[key].importeFinal = parseFloat($scope.selectedRowCartera[key].importe) + parseFloat($scope.anticipo);
-
-
-                    $scope.selectedRowCartera[key].importe = parseFloat($scope.formar_number($scope.selectedRowCartera[key].importe, 2, '.', ''));
-                    $scope.selectedRowCartera[key].importeFinal = (key == ($scope.selectedRowCartera.length) - 1) ? $scope.selectedRowCartera[key].importeFinal : $scope.selectedRowCartera[key].importe;
-
-                    $scope.selectedRowCartera[key].importeDiferencia = parseFloat($scope.selectedRowCartera[key].importe) + parseFloat($scope.anticipo);
-                    $scope.selectedRowCartera[key].importeDiferencia = parseFloat($scope.formar_number($scope.selectedRowCartera[key].importeDiferencia, 2, '.', ''));
-                });
-
-                $scope.model = {};
-                $scope.model.selectedOccurrence = $scope.selectedRowCartera.length - 1;
-
-                $scope.selectedRowCartera[$scope.selectedRowCartera.length - 1].checked = true;
-                // console.log( $scope.selectedRowCartera );
-                // swal({
-                //     title: "¿Esta seguro?",
-                //     text: "Se creara una referencia temporal.",
-                //     type: "warning",
-                //     showCancelButton: true,
-                //     confirmButtonColor: "#21B9BB",
-                //     confirmButtonText: "Aceptar",
-                //     closeOnConfirm: true
-                // },
-                // function() {
-                //     setTimeout(function() {
-                //         var params = $scope.setReferenceParams($scope.selectedRowCartera[0], 0, $scope.selectedRowDocuments.idDepositoBanco);
-                //         if ($scope.selectedRowCartera.length > 1) params.idTipoReferencia = 4;
-                //         $scope.createReference(params);
-                //     }, 1000);
-                // });
-            }
-        };
 
         $scope.ConfirmaReferencia = function() {
             console.log($scope.selectedRowCartera);
