@@ -7,31 +7,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
         $scope.idUsuario = $rootScope.userData.idUsuario;
     }
         $rootScope.mostrarMenu = 1;
-        //Listas Onjetos BD
-        $scope.lstEmpresaUsuario = [];
-        $scope.lstBanco = [];
-        $scope.lstCuenta = [];
-        $scope.lstSucursal = [];
-        $scope.lstDepartamento = [];
-        $scope.lstCliente = [];
-        //Depositos controles Habilitados
-        $scope.ddlBancoDisabled = true;
-        $scope.ddlCuentaDisabled = true;
-        $scope.txtFechasDisabled = true;
-        $scope.btnBuscarDisabled = true;
-
-        //Depositos Filtros ID 
-        $scope.selectedValueEmpresaID = 0;
-        $scope.selectedValueBancoID = 0;
-        $scope.selectedValueCuentaID = 0;
-        $scope.selectedValueFechaInicio = '';
-        $scope.selectedValueFechaFin = '';
-        $scope.btnSwitchIsEnable = false;
-        //Cartera Filtros ID    
-        $scope.selectedValueSucursaID = 0;
-        $scope.selectedValueDepartamentoID = null;
-        $scope.selectedValueCarteraFechaInicio = null;
-        $scope.showUserSearchPanel = false;
+     
         //init grids
         $scope.gridDocumentos = controlDepositosRepository.gridDocumentosOptions();
         $scope.gridDocumentos.columnDefs = controlDepositosRepository.gridDocumentosColumns($scope.btnSwitchIsEnable);
@@ -109,8 +85,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
                 $scope.updateObservation(rowEntity.idDepositoBanco, rowEntity.observaciones);
                 $scope.$apply();
             });
-
-
         };
 
 
@@ -143,27 +117,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
                 }
             }
             return arr;
-        };
-
-
-        $scope.asignarAnticipoRadio = function(i) {
-            console.log('Son el cambio');
-            // $scope.selectedRowCartera.forEach( function( item, key ){            
-            //     $scope.selectedRowCartera[key].checked = false;
-            //     $scope.selectedRowCartera[key].importeFinal = $scope.selectedRowCartera[key].importe;
-            // });
-
-            // $scope.selectedRowCartera[ i ].checked = true;
-            // $scope.selectedRowCartera[ i ].importeFinal = $scope.selectedRowCartera[key].importe + $scope.anticipo;
-        }
-
-
-
-        $scope.reloadGrids = function() {
-            $scope.depositoTotal = 0;
-            $scope.carteraTotal = 0;
-            $scope.getDepositosBancosNoReferenciados();
-            $scope.loadPendingDocs();
         };
 
         $scope.loadDepositosPuntosVentasHeraldo = function(fechaInicio, fechaFin) {
@@ -337,7 +290,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
                                 rap_referenciabancaria: value.NUMREFERENCIA, //
                                 rap_anno: value.ANNIO,
                                 rapNumDeposito: value.IdBancomer
-
                             }
 
                             controlDepositosRepository.insertAplicacionCobro(registroAInsertar).then(function(result){
@@ -348,10 +300,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
                     });
 
                     swal("Aplicacion de anticipos Realizado");
-
                 });
-
-
         }
 
         $scope.loadDetallesDepositoPuntosVentas = function(referencia, fechaInicio, fechaFin) {
@@ -394,7 +343,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
         }
 
 
-        $scope.setPrevSession = function() {
+        /*$scope.setPrevSession = function() {
             controlDepositosRepository.prevSession.isFirstTime = false;
             controlDepositosRepository.prevSession.ddlBancoDisabled = $scope.ddlBancoDisabled;
             controlDepositosRepository.prevSession.ddlCuentaDisabled = $scope.ddlCuentaDisabled;
@@ -444,7 +393,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             $scope.getCuentas();
             $scope.getSucursales();
             $scope.getDepartamentos();
-        }
+        }*/
 
         $scope.BuscarDepositosHeraldo = function() {
 
