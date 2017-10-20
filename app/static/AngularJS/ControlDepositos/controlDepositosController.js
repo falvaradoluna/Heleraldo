@@ -2,13 +2,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
     '$log', '$timeout', 'uiGridConstants', 'controlDepositosRepository', 'exportUiGridService',
     function($scope, $rootScope, $location, localStorageService, filtrosRepository, alertFactory, $http,
         $log, $timeout, uiGridConstants, controlDepositosRepository, exportUiGridService, $sce) {
-        // var text = "\n{mensaje:'hola mundo', code:234}";
-        // var inicio = text.indexOf('{');
-        // var fin = text.indexOf('}');
-        // var text2 = text.substr( inicio, fin );
-        // var text3 = eval("(" + text2 + ')');
-        // console.log( text3 );
-        // console.log( 'mensale', text3.mensaje );
       $scope.init = function(){
         $rootScope.userData = localStorageService.get('userData');
         $scope.idUsuario = $rootScope.userData.idUsuario;
@@ -311,18 +304,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             });
         };
 
-        /*
-            deshabilita la seleccion de fila al cargar los datos de la grilla, segun la condicion
-            $scope.gridDetallesDepositoPuntosVentas.isRowSelectable = function(row) {
-
-                if(row.entity.Rap_Folio == null){
-                    return row.entity.IsApplicable = true;
-                }
-                else{
-                    return row.entity.IsApplicable = false;//deshabilita
-                }       
-              
-            };*/
 
         $scope.aplicarCobro = function() {
             $scope.init();
@@ -340,11 +321,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
                         if (value.Rap_Folio == null) { // no tiene aplicacion de cobro
                             var registroAInsertar = {
                                 rap_idempresa: 0, //
-                                //rap_idsucursal: 1, //
-                               // rap_iddepartamento: 1, //
                                 rap_idpersona: $scope.selectedValueIdPersona,
-                                //rap_cobrador: 'MMK', //
-                                //rap_moneda: 'PE',
                                 rap_tipocambio: 1.00000, //
                                 rap_referencia: $scope.selectedValueIdPersona,
                                 rap_iddocto: '0', //
@@ -380,22 +357,15 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
         $scope.loadDetallesDepositoPuntosVentas = function(referencia, fechaInicio, fechaFin) {
 
             controlDepositosRepository.getDetalleDepositoPuntosVentasHeraldo(referencia, fechaInicio, fechaFin).then(function(result) {
-
                 if (result.data.length > 0) {
-
-                    //$scope.tblDetallesDepositoPuntosVentas = result.data;
                     $scope.gridDetallesDepositoPuntosVentas.data = result.data;
                       console.log(result.data);
-
                 } else {
-
                     console.log('loadDetallesDepositoPuntosVentas no result');
                 }
             }, function(error) {
-
                 console.log('Error');
             });
-
         };
 
         $scope.updateObservation = function(idDepositoBanco, observacion) {
@@ -504,9 +474,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             });
         };
 
-        //$scope.initCalendarstyle();
-        //$scope.loadPendingDocs();
-
         $scope.porAplicar = function() {
             $(".pestania").removeClass('active');
             $(".por-aplicar").addClass('active');
@@ -517,7 +484,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
             // $scope.selectedRowDocuments = {};
             if (!$scope.carteraControlsDisabled)
                 $scope.getDepositosBancosNoReferenciados();
-
         }
 
         $scope.dpi = function() {
@@ -690,9 +656,5 @@ function exportUiGridService(uiGridExporterService) {
 
         ws[cell_ref] = cell;
     }
-
-    //};
-
-
 }
 
