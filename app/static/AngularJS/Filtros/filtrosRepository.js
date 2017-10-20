@@ -43,19 +43,7 @@ registrationModule.factory('filtrosRepository', function($http) {
 
             });
         },
-        getBancos: function(idBanco) {
-            return $http({
-                url: filtrosURL + 'bancos/',
-                method: "GET",
-                params: {
-                    idBanco: idBanco
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
 
-            });
-        },
         getCuentaBanco: function(idCuentaBanco, idempresa) {
             return $http({
                 url: filtrosURL + 'cuentabanco/',

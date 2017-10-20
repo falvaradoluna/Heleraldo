@@ -81,27 +81,6 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
 
 
 
-        /*
-            filtrosRepository.getEmpresas($scope.idUsuario).then(function(result) {
-                if (result.data.length > 0) {
-                    $scope.lstEmpresaUsuario = result.data;
-                    $scope.initCalendarstyle();
-                }
-            });*/
-
-
-
-        $scope.getBancos = function() {
-                  
-            var idEmpresa = $scope.selectedValueEmpresaID;
-            $scope.ddlBancoDisabled = false;
-
-            filtrosRepository.getBancos(idEmpresa).then(function(result) {
-                if (result.data.length > 0) {
-                    $scope.lstBanco = result.data;
-                }
-            });
-        };
 
         $scope.getCuentas = function() {
 
@@ -243,7 +222,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
 
         };
 
-        $scope.changeSwitch = function() {
+/*        $scope.changeSwitch = function() {
 
 
             if ($scope.btnSwitchIsEnable === 1) {
@@ -253,7 +232,7 @@ registrationModule.controller('controlDepositosController', ['$scope', '$rootSco
                 $scope.gridDocumentos.columnDefs =
                     controlDepositosRepository.gridDocumentosColumns(false);
             }
-        };
+        };*/
 
         $scope.setSearchType = function(val) {
             if (val == 1) {
