@@ -2,30 +2,6 @@ var controlDepositosURL = global_settings.urlCORS + 'api/controlDepositos/';
 
 registrationModule.factory('controlDepositosRepository', function($http) {
     return {
-        prevSession: {
-            isFirstTime: true,
-            ddlBancoDisabled: null,
-            ddlCuentaDisabled: null,
-            txtFechasDisabled: null,
-            btnBuscarDisabled: null,
-            carteraControlsDisabled: null,
-            selectedValueEmpresaID: null,
-            selectedValueBancoID: null,
-            selectedValueCuentaID: null,
-            selectedValueFechaInicio: null,
-            selectedValueFechaFin: null,
-            btnSwitchIsEnable: null,
-            selectedValueSucursaID: null,
-            selectedValueDepartamentoID: null,
-            selectedValueCarteraFechaInicio: null,
-            selectedValuecarteraFechaFin: null,
-            showUserSearchPanel: null,
-            searchType: null,
-            searchTypeID: null,
-            searchValue: null,
-            searchClienteID: null
-        },
-
 
         createReference: function(objData) {
             console.log( objData );
@@ -44,44 +20,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
                 url: controlDepositosURL + 'createTempReference/',
                 method: "GET",
                 params: objData,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-
-        insertReferenceDetails: function(objData) {
-            return $http({
-                url: controlDepositosURL + 'insertReferenceDetails/',
-                method: "GET",
-                params: objData,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-
-        quitarDPI: function( idCargoBanco, idBanco, idUsuario ) {
-            return $http({
-                url: controlDepositosURL + 'quitarDPI/',
-                method: "GET",
-                params: {
-                    idCargoBanco: idCargoBanco,
-                    idBanco: idBanco,
-                    idUsuario: idUsuario
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-
-
-        insertaRefAntipag: function(bankTableName, currentBase) {
-            return $http({
-                url: controlDepositosURL + 'insertaRefAntipag/',
-                method: "GET",
-                params: { bankTableName: bankTableName, currentBase: currentBase },
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -155,18 +93,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
             });
         },
 
-        insertarPuntoVenta: function(objData) {
-            //console.log('insertado objeto:' + objData);
-            return $http({
-                url: controlDepositosURL + 'insertPuntoVenta/',
-                method: "GET",
-                params: objData,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-
         getPersonasParametrizadas: function(objData) {
             
             return $http({
@@ -201,48 +127,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
             });
         },
 
-        getPendingReference: function() {
-            return $http({
-                url: controlDepositosURL + 'pendingReference/',
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-
-        getPendingReferenceDetails: function(idReferencia) {
-            return $http({
-                url: controlDepositosURL + 'pendingReferenceDetails/',
-                method: "GET",
-                params: { idReferencia: idReferencia },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-
-        eliminarReferencia: function(idReferencia) {
-            return $http({
-                url: controlDepositosURL + 'eliminarReferencia/',
-                method: "GET",
-                params: { idReferencia: idReferencia },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-        
-        insApplyReference: function(idReferencia) {
-            return $http({
-                url: controlDepositosURL + 'applyReference/',
-                method: "GET",
-                params: { idReferencia: idReferencia },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
         updCarteraVencidaReferencia: function(idReferencia) {
             return $http({
                 url: controlDepositosURL + 'updCarteraVencidaReferencia/',
@@ -297,20 +181,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            });
-        },
-
-        getClientByName: function(clientName) {
-            return $http({
-                url: controlDepositosURL + 'clientByName/',
-                method: "GET",
-                params: {
-                    clientName: clientName
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-
             });
         },
 
@@ -439,36 +309,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
             ];
         },
 
-        gridDocumentosColumnsAplicados: function(isVisible) {
-            return [
-                { name: 'idBmer', displayName: 'Cons', cellClass: 'gridCellRight', width: 75 },
-                { name: 'banco', displayName: 'Banco', cellClass: 'gridCellLeft', width: 100 },
-                { name: 'referencia', displayName: 'Referencia', cellClass: 'gridCellLeft', width: 200 },
-                { name: 'concepto', displayName: 'Concepto', cellClass: 'gridCellLeft', width: 250 },
-                { name: 'refAmpliada', displayName: 'Referencia Ampliada', cellClass: 'gridCellLeft', width: 200 },
-                { name: 'fechaOperacion', displayName: 'Fecha', type: 'date', cellFilter: 'date:\'dd-MM-yyyy\'', cellClass: 'gridCellRight', width: 100 },
-                { name: 'cargo', displayName: 'Cargo', cellFilter: 'currency', visible: false, cellClass: 'gridCellRight', width: 100 },
-                { name: 'abono', displayName: 'Abono', cellFilter: 'currency', cellClass: 'gridCellRight', width: 100 }, {
-                    name: 'observaciones',
-                    displayName: 'Observaciones',
-                    cellEditableCondition: true,
-                    visible: false,
-                    cellClass: 'gridCellRight',
-                    width: '*'
-                },
-                {
-                    name: 'verdetalle',
-                    displayName: 'Ver detalle',
-                    cellEditableCondition: true,
-                    visible: true,
-                    enableCellEdit : false,
-                    cellClass: 'gridCellRight',
-                    cellTemplate :'<button class="btn btn-info btn-xs" ng-click="grid.appScope.showReferenceDetails(row.entity.idReferencia)"><i class="ti-eye"></i></button>',
-                    width: '*'
-                }
-            ];
-        },
-
         gridCarteraOptions: function() {
             return {
                 enableColumnResize: true,
@@ -495,20 +335,6 @@ registrationModule.factory('controlDepositosRepository', function($http) {
                 { name: 'importe', displayName: 'Importe', cellFilter: 'currency', cellClass: 'gridCellRight', width: 100 },
                 { name: 'saldo', displayName: 'Saldo', cellFilter: 'currency', cellClass: 'gridCellRight', width: 100 }
             ];
-        },
-
-        getClientById: function(idBusqueda) {
-            return $http({
-                url: controlDepositosURL + 'clientById/',
-                method: "GET",
-                params: {
-                    idBusqueda: idBusqueda
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
         },
 
          getReporteReferencia: function(myJson) {
